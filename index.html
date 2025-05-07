@@ -2,449 +2,375 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Online Resume - Jantonign Reyes</title>
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    href="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/JanDP.jpg"
-    type="image/jpg"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Resume – Jantonign Reyes</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" type="image/jpeg" />
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Global Reset and Basic Styles */
-    * {
+    :root {
+      --color-bg: #eee;
+      --color-white: #fff;
+      --color-black: #000;
+      --color-gray: #777;
+      --font-base: 'Montserrat', sans-serif;
+    }
+
+    /* Reset */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    body {
-      background: #eee;
-      font-family: 'Montserrat', sans-serif;
-      color: #333;
-      /* Optional smooth scrolling for anchor links: */
+
+    html {
       scroll-behavior: smooth;
     }
 
-    /* Print Styles (optional, hides nav bar when printing) */
+    body {
+      background: var(--color-bg);
+      font-family: var(--font-base);
+      color: var(--color-black);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background: var(--color-black);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      text-align: center;
+      padding: 0.75rem;
+    }
+    nav a {
+      color: var(--color-white);
+      text-decoration: none;
+      margin: 0 0.75rem;
+      font-weight: 600;
+    }
+    nav a:hover {
+      color: var(--color-gray);
+    }
+
+    /* Print Styles */
     @media print {
-      .download-btn,
-      .nav-bar {
+      nav,
+      .download-btn {
         display: none;
       }
     }
 
-    /* NAV BAR */
-    .nav-bar {
-      background: #000;
-      padding: 10px;
-      text-align: center;
-    }
-    .nav-bar a {
-      color: #fff;
-      text-decoration: none;
-      margin: 0 10px;
-      font-weight: 600;
-    }
-    .nav-bar a:hover {
-      color: #ccc;
-    }
-
-    /* Download Button (print method) */
-    .download-btn {
-      display: inline-block;
-      background-color: #000;
-      color: #fff;
-      padding: 10px 20px;
-      margin: 20px auto;
-      text-align: center;
-      border-radius: 4px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-    }
-    .download-btn:hover {
-      background-color: #444;
-    }
-
     /* Container */
     .resume-container {
-      max-width: 1000px;
-      margin: 20px auto;
-      background-color: #fff;
+      max-width: 900px;
+      margin: 1.5rem auto;
+      background: var(--color-white);
       border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      padding-bottom: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .resume-container:hover {
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
     }
 
     /* Header */
-    .header {
+    header {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      background: linear-gradient(90deg, #000, #444);
-      padding: 20px;
-      color: #fff;
+      background: linear-gradient(90deg, var(--color-black), #444);
+      color: var(--color-white);
+      padding: 1.25rem;
     }
-    .header img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
+    header img {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      margin-right: 20px;
-      border: 3px solid #fff;
+      object-fit: cover;
+      border: 3px solid var(--color-white);
+      margin-right: 1rem;
+      transition: transform 0.3s ease;
     }
-    .header h1 {
-      font-size: 2em;
-      margin-bottom: 8px;
+    header img:hover {
+      transform: scale(1.05);
+    }
+    header .intro {
+      flex: 1;
+    }
+    header h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
       font-weight: 600;
     }
-    .header p {
-      line-height: 1.4;
+    header .contact {
+      font-size: 0.9rem;
+    }
+    header .contact br + br {
+      margin-top: 0.25rem;
     }
 
-    /* Content */
-    .content {
-      padding: 30px;
+    /* Download button */
+    .download-btn {
+      display: inline-block;
+      background: var(--color-black);
+      color: var(--color-white);
+      padding: 0.75rem 1.5rem;
+      margin: 1rem 0;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background: #444;
     }
 
-    /* Section Titles */
+    /* Main content */
+    main {
+      padding: 1.5rem;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
     .section-title {
-      font-size: 1.3em;
+      font-size: 1.25rem;
       font-weight: 600;
-      border-left: 4px solid #000;
-      padding-left: 10px;
-      margin-bottom: 10px;
       text-transform: uppercase;
+      border-left: 4px solid var(--color-black);
+      padding-left: 0.75rem;
+      margin-bottom: 0.75rem;
     }
-
-    /* Objective, Info, Present, Education, Experience */
-    .objective,
-    .personal-info,
-    .present,
-    .education,
-    .experience {
-      margin-bottom: 30px;
+    p {
+      margin-bottom: 0.75rem;
     }
-    .objective p,
-    .personal-info p,
-    .present p {
-      line-height: 1.6;
-    }
-
-    /* Lists */
     ul {
       list-style: disc;
-      margin-left: 20px;
-      margin-top: 10px;
-      line-height: 1.6;
+      margin-left: 1.25rem;
+      margin-bottom: 0.75rem;
     }
 
-    /* Company Headings */
-    .experience h2 {
-      margin-top: 30px;
-      margin-bottom: 5px;
-      font-size: 1.2em;
-      font-weight: 600;
-      color: #000;
-    }
-
-    .experience > p.gray-text {
-      margin-bottom: 15px;
-    }
-
-    /* Role Titles */
-    .role-title {
-      font-weight: 600;
-      font-size: 1.1em;
-      color: #000;
-      margin-top: 20px;
-      margin-bottom: 5px;
-    }
-    .gray-text {
-      color: #777;
-      font-size: 0.95em;
-    }
-
-    /* Skills Sections */
-    .skills {
-      margin-bottom: 20px;
-    }
-    .skills ul {
+    /* Skills lists columns */
+    .columns-2 ul {
       columns: 2;
-      column-gap: 30px;
+      column-gap: 2rem;
     }
-    .skills p {
-      line-height: 1.6;
+
+    /* Experience & Roles */
+    .experience h3,
+    .roles-list h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    .gray {
+      color: var(--color-gray);
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
     }
 
     /* Footer */
-    .footer {
-      background: #000;
-      color: #fff;
+    footer {
+      background: var(--color-black);
+      color: var(--color-white);
       text-align: center;
-      padding: 10px;
-      font-size: 0.9em;
+      padding: 0.75rem;
+      font-size: 0.85rem;
     }
 
-    /* Hover and Transition Effects */
-    .resume-container,
-    .header img,
-    .section-title,
-    .footer {
-      transition: all 0.3s ease;
-    }
-    .resume-container:hover {
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      header {
+        text-align: center;
+        flex-direction: column;
+      }
+      header img {
+        margin-bottom: 1rem;
+        margin-right: 0;
+      }
+      .columns-2 ul {
+        columns: 1;
+      }
+      nav a {
+        margin: 0 0.5rem;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVIGATION BAR -->
-  <div class="nav-bar">
+  <nav aria-label="Main navigation">
     <a href="#objective">Objective</a>
     <a href="#trainings">Trainings</a>
+    <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
-    <a href="#present">Present</a>
     <a href="#roles">Roles</a>
     <a href="#education">Education</a>
-    <!-- New link for Assessments -->
     <a href="#assessments">Assessments</a>
-  </div>
+  </nav>
 
-  <!-- Download as PDF Button (Print method) -->
-  <div style="text-align:center;">
-    <button class="download-btn" onclick="window.print()">Download as PDF</button>
-  </div>
-
-  <div class="resume-container" id="resume">
-    <!-- Header with Photo and Name -->
-    <div class="header">
-      <img 
-        src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/JanDP.jpg" 
-        alt="Profile Picture">
-      <div>
+  <div class="resume-container">
+    <header>
+      <img src="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" alt="Jantonign Reyes profile" />
+      <div class="intro">
         <h1>Jantonign Reyes</h1>
-        <p>
-          Age: 33 | Male | Single<br>
-          Contact: (+63) 977 004 0035 | jantonignsreyes@gmail.com<br>
-          Address: Seine, Chateau Elysee Brgy. Moonwalk Parañaque City, 1709 
-        </p>
+        <div class="contact">
+          Age 33 &bull; Male &bull; Single<br>
+          (+63) 977 004 0035 &bull; <a href="mailto:jantonignsreyes@gmail.com">jantonignsreyes@gmail.com</a><br>
+          Seine, Chateau Elysee Brgy. Moonwalk, Parañaque City, 1709
+        </div>
       </div>
+    </header>
+
+    <div style="text-align:center;">
+      <button class="download-btn" onclick="window.print()">Download as PDF</button>
     </div>
 
-    <!-- Content -->
-    <div class="content">
-
-      <!-- Objective -->
-      <div class="objective" id="objective">
+    <main>
+      <section id="objective">
         <div class="section-title">Objective</div>
-        <p>
-          A professional with a background in mass communications, business administration, and data-focused work.
-          Looking to blend technical expertise, marketing know-how, and operational support to help organizations.
-          Open to roles in technology, administration, and operations.
-        </p>
-      </div>
+        <p>Results-oriented professional with a foundation in Mass Communications, Business Administration, and Advanced Data Analytics. Skilled in leveraging AI-driven tools, automation, and BI to enhance operations, marketing, and decision-making. Seeking roles in Technology, Business Analytics, Operations Improvement, or Administrative Management to drive efficiency with intelligent solutions.</p>
+      </section>
 
-      <!-- Personal Info -->
-      <div class="personal-info">
-        <p><strong>Birthdate:</strong> January 29, 1992</p>
-        <p><strong>Place of Birth:</strong> Bataan</p>
-      </div>
-
-      <!-- Trainings -->
-      <div id="trainings">
-        <div class="section-title">Trainings</div>
+      <section id="trainings">
+        <div class="section-title">Trainings & Certifications</div>
         <ul>
           <li>Agile Scrum</li>
           <li>Intelligent Automation</li>
           <li>Automation Anywhere Partner Sales Professional</li>
-          <li>Complete Oracle SQL Bootcamp</li>
-          <li>Introduction to Google Cloud Platform (GCP)</li>
-          <li>Data Engineer</li>
-          <li>Introduction to ITIA</li>
+          <li>Oracle SQL Bootcamp</li>
+          <li>Intro to Google Cloud Platform</li>
+          <li>Data Engineer Fundamentals</li>
+          <li>ITIA Basics</li>
           <li>Tableau Proficiency</li>
           <li>Business Analysis Fundamentals</li>
-          <li>Analytical Function on Oracle</li>
+          <li>Oracle Analytical Functions</li>
         </ul>
-      </div>
+      </section>
 
-      <!-- Technical Skills -->
-      <div class="skills">
-        <div class="section-title">Technical Skills</div>
-        <ul>
-          <li>GCP</li>
-          <li>DOMO</li>
-          <li>Data Studio</li>
-          <li>Control M</li>
-          <li>Informatica</li>
-          <li>Unix</li>
-          <li>AI Technology</li>
-        </ul>
-      </div>
+      <section id="skills">
+        <div class="section-title">Skills</div>
+        <div class="columns-2">
+          <h4>Technical</h4>
+          <ul>
+            <li>GCP</li>
+            <li>DOMO</li>
+            <li>Data Studio</li>
+            <li>Control-M</li>
+            <li>Informatica</li>
+            <li>Unix</li>
+            <li>AI Technologies</li>
+            <li>Notion</li>
+            <li>AirTable</li>
+            <li>Zapier</li>
+          </ul>
 
-      <!-- Administrative Skills -->
-      <div class="skills">
-        <div class="section-title">Administrative Skills</div>
-        <p>
-          Experience with managing files, budgets, and resource allocation for multiple projects.
-          Comfortable with documents, schedules, and team coordination.
-        </p>
-      </div>
+          <h4>Administrative & Operational</h4>
+          <ul>
+            <li>Documentation & Budget Management</li>
+            <li>Resource Allocation & Scheduling</li>
+            <li>Process Optimization & Automation</li>
+            <li>Policy Implementation</li>
+            <li>Strategic Planning & Budget Tracking</li>
+            <li>Team Coordination & Support</li>
+          </ul>
 
-      <!-- Operational Skills -->
-      <div class="skills">
-        <div class="section-title">Operational Skills</div>
-        <p>
-          Helps streamline daily processes and lead policy implementation.
-          Well-versed in planning, resource management, and budget tracking for projects.
-        </p>
-      </div>
+          <h4>Soft</h4>
+          <ul>
+            <li>Effective Communication & Listening</li>
+            <li>Leadership & Teamwork</li>
+            <li>Conflict Resolution</li>
+            <li>Adaptability & Time Management</li>
+            <li>Analytical Thinking & Data Interpretation</li>
+          </ul>
+        </div>
+      </section>
 
-      <!-- Soft Skills -->
-      <div class="skills">
-        <div class="section-title">Soft Skills</div>
-        <p>
-          Strong communication, conflict resolution, time management, data interpretation, and adaptability.
-          Known for teamwork, leadership, and working with diverse groups.
-        </p>
-      </div>
-
-      <!-- Work Experience -->
-      <div class="experience" id="experience">
+      <section id="experience">
         <div class="section-title">Work Experience</div>
 
-        <!-- Vivo Mobile Tech Inc. -->
-        <h2>Vivo Mobile Tech Inc.</h2>
-        <p class="gray-text">Full-time - 2 years 9 months</p>
+        <div>
+          <h3>TELUS International Digital Solutions</h3>
+          <div class="gray">Full-time &bull; 2 yrs 5 mos (Jun 2021 – Oct 2023)</div>
 
-        <div class="role-title">Trade Marketing Officer (September 2018 - December 2021)</div>
-        <ul>
-          <li>Developed and executed trade marketing plans with sales and marketing teams.</li>
-          <li>Boosted brand presence and ran campaigns across retail channels.</li>
-          <li>Led channel-specific marketing strategies for assigned retailers.</li>
-          <li>Conceptualized and introduced trade promotions with sales teams.</li>
-          <li>Visited points of sale to confirm brand visibility.</li>
-        </ul>
-        <p><strong>Skills:</strong> Campaign Planning, Budget Management, Brand Strategy, Team Collaboration</p>
+          <strong class="role-title">Sr. Data Analyst</strong>
+          <em>(Jun 2021 – Dec 2022)</em>
+          <ul>
+            <li>Led data tasks, supervised analyst team, and addressed data gaps impacting business KPIs.</li>
+            <li>Conducted high-priority analyses under tight deadlines.</li>
+            <li>Mentored junior analysts to improve reporting quality.</li>
+          </ul>
 
-        <!-- TELUS International Digital Solutions -->
-        <h2>TELUS International Digital Solutions</h2>
-        <p class="gray-text">Full-time - 2 years 5 months (promotion-driven growth)</p>
+          <strong class="role-title">Business Analyst</strong>
+          <em>(Sep 2022 – Dec 2022)</em>
+          <ul>
+            <li>Designed processes aligned to business objectives and technical requirements.</li>
+            <li>Defined system specs to enhance customer service workflows.</li>
+            <li>Analyzed trends to inform leadership and cross-functional teams.</li>
+          </ul>
 
-        <div class="role-title">Sr. Data Analyst (June 2021 - December 2022)</div>
-        <ul>
-          <li>Oversaw data tasks and supervised analyst personnel.</li>
-          <li>Found and addressed data gaps affecting business needs.</li>
-          <li>Handled urgent analysis under tight timelines.</li>
-        </ul>
-        <p><strong>Skills:</strong> Data Collection, SQL, Team Guidance, Reporting</p>
+          <strong class="role-title">Technology Analyst – Enterprise Data Warehouse</strong>
+          <em>(Dec 2022 – Oct 2023)</em>
+          <ul>
+            <li>Managed application support for DOMO, ITSM, Control-M, and GCP environments.</li>
+            <li>Oversaw change and release management, coordinating POMs and post-release reviews.</li>
+            <li>Resolved alerts to maintain system uptime and performance.</li>
+          </ul>
+        </div>
 
-        <div class="role-title">Business Analyst (September 2022 - December 2022)</div>
-        <ul>
-          <li>Introduced new processes aligned with business targets.</li>
-          <li>Outlined system requirements for improved customer service.</li>
-          <li>Reviewed metrics to spot trends and outliers across teams.</li>
-          <li>Connected with leadership and departments on new projects.</li>
-          <li>Informed teams about shared goals and progress.</li>
-        </ul>
-        <p><strong>Skills:</strong> SQL, Business Analysis, Oracle, MS Office, Google Sheets, Tableau, Agile Scrum</p>
+        <div>
+          <h3>Vivo Mobile Tech Inc.</h3>
+          <div class="gray">Full-time &bull; 2 yrs 9 mos (Sep 2018 – Dec 2021)</div>
 
-        <div class="role-title">General Administration Analyst (September 2022 - December 2022)</div>
-        <ul>
-          <li>Managed administrative tasks like budget planning and policy review.</li>
-          <li>Examined regulations that applied to department processes.</li>
-          <li>Oversaw financial reporting, payroll, and procurement tasks.</li>
-        </ul>
-        <p><strong>Skills:</strong> Policy Review, Financial Tracking, Reporting, Team Support</p>
+          <strong class="role-title">Trade Marketing Officer</strong>
+          <em>(Sep 2018 – Dec 2021)</em>
+          <ul>
+            <li>Partnered with sales to develop and execute trade marketing campaigns.</li>
+            <li>Enhanced brand visibility across retail channels and POS activations.</li>
+            <li>Monitored execution to ensure alignment with brand standards.</li>
+          </ul>
+        </div>
+      </section>
 
-        <div class="role-title">Technology Analyst – Enterprise Data Warehouse (December 2022 - October 2023)</div>
-        <p><em>Application Support / Monitoring / Tickets</em></p>
-        <ul>
-          <li>Monitored and maintained DOMO and other applications.</li>
-          <li>Managed identity tools, weblogic, and cloud environments.</li>
-          <li>Used ITSM, Control-M, Informatica, and GCP to fix issues.</li>
-          <li>Responded to alerts to avoid bigger problems.</li>
-        </ul>
-        <p><em>Change and Release Management</em></p>
-        <ul>
-          <li>Reviewed change requests and kept releases on track.</li>
-          <li>Collaborated with coordinators on methods of procedures.</li>
-          <li>Led release reviews and post-implementation discussions.</li>
-        </ul>
-        <p><strong>Skills:</strong> DOMO, ITSM, Change Management, GCP, Informatica, Control-M</p>
-      </div>
-
-      <!-- Relevant Jobs -->
-      <div class="experience" id="roles">
-        <div class="section-title">Roles That Match My Background</div>
-        <ul>
-          <li>Data Analyst / Sr. Data Analyst</li>
+      <section id="roles">
+        <div class="section-title">Relevant Roles</div>
+        <ul class="roles-list">
+          <li>Sr. Data Analyst</li>
           <li>Business Analyst</li>
-          <li>General Administration Analyst</li>
           <li>Technology Analyst</li>
-          <li>Trade Marketing Officer / Marketing Specialist</li>
-          <li>Project Coordinator / Operations Coordinator</li>
+          <li>Trade Marketing Officer</li>
+          <li>Project / Operations Coordinator</li>
+          <li>Administrative / Executive Assistant</li>
           <li>Freelance Business Consultant</li>
         </ul>
-      </div>
+      </section>
 
-      <!-- Education -->
-      <div class="education" id="education">
+      <section id="education">
         <div class="section-title">Education</div>
-        <p>
-          <strong>Master in Business Administration</strong><br>
-          Central Colleges of the Philippines (SY: 2019-2022)
-        </p>
-        <p>
-          <strong>Bachelor of Arts in Mass Communications</strong><br>
-          Far Eastern University (SY: 2009-2015)
-        </p>
-      </div>
+        <p><strong>MBA</strong><br>Central Colleges of the Philippines (2019–2022)</p>
+        <p><strong>BA in Mass Communications</strong><br>Far Eastern University (2009–2015)</p>
+      </section>
 
-      <!-- Assessments Section -->
-      <div class="experience" id="assessments">
-        <div class="section-title">Assessments</div>
-        <p>
-          Below are links to personal assessment results:
-        </p>
+      <section id="assessments">
+        <div class="section-title">Assessments & Links</div>
         <ul>
-          <li>
-            Tonny Robins DISC &amp; Motivators:
-            <a
-              href="https://raw.githubusercontent.com/jantwonine/resume/main/Tonny%20Robins%20DISC%20%26%20Motivators.pdf"
-              target="_blank"
-            >
-              View PDF
-            </a>
-          </li>
-          <li>
-            Ray Dalio Principles You:
-            <a
-              href="https://raw.githubusercontent.com/jantwonine/resume/main/Ray%20Dalio%20Principles%20You.pdf"
-              target="_blank"
-            >
-              View PDF
-            </a>
-          </li>
+          <li>DISC &amp; Motivators: <a href="https://raw.githubusercontent.com/jantwonine/resume/main/Tonny%20Robins%20DISC%20%26%20Motivators.pdf" target="_blank">View PDF</a></li>
+          <li>Principles You: <a href="https://raw.githubusercontent.com/jantwonine/resume/main/Ray%20Dalio%20Principles%20You.pdf" target="_blank">View PDF</a></li>
         </ul>
-      </div>
+      </section>
+    </main>
 
-    </div><!-- /content -->
-
-    <!-- Footer -->
-    <div class="footer">
+    <footer>
       &copy; 2025 Jantonign Reyes. All rights reserved.
-    </div>
-  </div><!-- /resume-container -->
-
+    </footer>
+  </div>
 </body>
 </html>
