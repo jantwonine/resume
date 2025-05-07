@@ -22,68 +22,160 @@
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background: var(--bg-light); font-family: var(--font-sans); color: var(--text-dark); }
-    .resume-container {
-      max-width: 900px; margin:2rem auto; background:#fff;
-      display:grid; grid-template-columns: 250px 1fr; border-radius:8px; overflow:hidden;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
+
+    /* Navigation Bar */
+    nav {
+      background: var(--accent-dark);
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 600;
+    }
+    nav a:hover { color: var(--accent-light); }
+
+    /* Print button */
+    .download-btn {
+      display: inline-block;
+      background: var(--accent-dark);
+      color: var(--text-light);
+      padding: 0.75rem 1.5rem;
+      margin: 1rem auto;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover { background: var(--accent-light); }
+
+    /* Container */
+    .resume-container {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      background: #fff;
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
     /* Sidebar */
     .sidebar {
-      background: var(--accent-dark); color: var(--text-light); padding:2rem;
-      display:flex; flex-direction:column; align-items:center;
+      background: var(--accent-dark);
+      color: var(--text-light);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .sidebar img {
-      width:120px; height:120px; border-radius:50%; object-fit:cover;
-      border:3px solid var(--text-light);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--text-light);
     }
     .sidebar h2 {
-      margin-top:1rem; font-size:1.5rem; font-weight:600;
-      text-align:center;
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
     }
-    .contact, .section-skills, .section-trainings {
-      width:100%; margin-top:2rem;
+    .contact,
+    .section-trainings,
+    .section-skills {
+      width: 100%;
+      margin-top: 2rem;
     }
     .contact p {
-      font-size:0.9rem; line-height:1.5;
-      text-align:center;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      text-align: center;
+      margin-bottom: 0.5rem;
     }
-    .section-skills h3, .section-trainings h3 {
-      font-size:1rem; font-weight:600; margin-bottom:0.5rem;
-      text-transform:uppercase; color: var(--accent-light);
+    .section-trainings h3,
+    .section-skills h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      text-align: left;
     }
-    .section-skills ul, .section-trainings ul {
-      list-style:none; padding-left:0;
+    .section-trainings ul,
+    .section-skills ul {
+      list-style: none;
+      padding-left: 0;
     }
-    .section-skills li, .section-trainings li {
-      font-size:0.85rem; line-height:1.4; margin-bottom:0.3rem;
+    .section-trainings li,
+    .section-skills li {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-bottom: 0.3rem;
     }
+
     /* Main content */
-    .main-content { padding:2rem; }
+    .main-content { padding: 2rem; }
     .section-title {
-      position:relative; font-size:1.25rem; font-weight:600;
-      margin-bottom:1rem; padding-bottom:0.3rem;
+      position: relative;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      padding-bottom: 0.3rem;
       color: var(--accent-dark);
     }
     .section-title::after {
-      content:''; position:absolute; left:0; bottom:0;
-      width:50px; height:3px; background: var(--accent-light);
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-light);
     }
-    section { margin-bottom:2rem; }
-    p { margin-bottom:1rem; }
-    ul { list-style:disc; margin-left:1.25rem; margin-bottom:1rem; }
-    .role-title { font-size:1.1rem; font-weight:600; color: var(--accent-light); margin-top:1rem; }
-    .gray { color:#777; font-size:0.9rem; margin-bottom:0.75rem; }
-    footer { text-align:center; padding:1rem; font-size:0.85rem; color:#aaa; }
+    section { margin-bottom: 2rem; }
+    p { margin-bottom: 1rem; }
+    ul { list-style: disc; margin-left: 1.25rem; margin-bottom: 1rem; }
+    .role-title { font-size: 1.1rem; font-weight: 600; color: var(--accent-light); margin-top: 1rem; }
+    .gray { color: #777; font-size: 0.9rem; margin-bottom: 0.75rem; }
+    footer { text-align: center; padding: 1rem; font-size: 0.85rem; color: #aaa; }
+
     @media(max-width:768px) {
-      .resume-container { grid-template-columns:1fr; }
-      .sidebar { flex-direction:row; flex-wrap:wrap; justify-content:center; padding:1rem; }
-      .sidebar img { margin:0 auto; }
-      .sidebar h2 { width:100%; text-align:center; margin:1rem 0; }
-      .contact, .section-skills, .section-trainings { margin:1rem; }
+      nav { font-size: 0.9rem; }
+      .resume-container { grid-template-columns: 1fr; }
+      .sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 1rem; }
+      .sidebar img { margin: 0 auto; }
+      .sidebar h2 { width: 100%; text-align: center; margin: 1rem 0; }
+      .contact,
+      .section-trainings,
+      .section-skills { margin: 1rem; }
     }
   </style>
 </head>
 <body>
+  <nav aria-label="Resume navigation">
+    <a href="#objective">Objective</a>
+    <a href="#trainings">Trainings</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#roles">Roles</a>
+    <a href="#education">Education</a>
+    <a href="#assessments">Assessments</a>
+  </nav>
+
+  <div style="text-align:center;">
+    <button class="download-btn" onclick="window.print()">Download as PDF</button>
+  </div>
+
   <div class="resume-container">
     <aside class="sidebar">
       <img src="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" alt="Jantonign Reyes" />
@@ -93,22 +185,51 @@
         <p>(+63) 919 604 1925<br><a href="mailto:jantonignsreyes@gmail.com" style="color:var(--text-light); text-decoration:none;">jantonignsreyes@gmail.com</a></p>
         <p>Moonwalk, Parañaque City, 1709</p>
       </div>
-      <div class="section-skills">
-        <h3>Skills</h3>
-        <ul>
-          <li>GCP &bull; DOMO &bull; Data Studio</li>
-          <li>Control-M &bull; Informatica &bull; Unix</li>
-          <li>AI Tools &bull; Notion &bull; AirTable</li>
-          <li>Zapier &bull; Reporting &bull; SQL</li>
-        </ul>
-      </div>
+
       <div class="section-trainings">
-        <h3>Certifications</h3>
+        <h3>Trainings</h3>
         <ul>
           <li>Agile Scrum</li>
           <li>Intelligent Automation</li>
+          <li>Automation Anywhere Partner Sales Professional</li>
           <li>Oracle SQL Bootcamp</li>
+          <li>Intro to Google Cloud Platform</li>
+          <li>Data Engineer Fundamentals</li>
+          <li>ITIA Basics</li>
           <li>Tableau Proficiency</li>
+          <li>Business Analysis Fundamentals</li>
+          <li>Oracle Analytical Functions</li>
+        </ul>
+      </div>
+
+      <div class="section-skills">
+        <h3>Technical Skills</h3>
+        <ul>
+          <li>GCP</li>
+          <li>DOMO</li>
+          <li>Data Studio</li>
+          <li>Control-M</li>
+          <li>Informatica</li>
+          <li>Unix</li>
+        </ul>
+        <h3>Administrative Skills</h3>
+        <ul>
+          <li>Documentation & Budget Management</li>
+          <li>Resource Allocation & Scheduling</li>
+          <li>Data-driven Automation</li>
+        </ul>
+        <h3>Operational Skills</h3>
+        <ul>
+          <li>Process Optimization</li>
+          <li>Policy Implementation</li>
+          <li>Change & Release Management</li>
+        </ul>
+        <h3>Soft Skills</h3>
+        <ul>
+          <li>Communication & Conflict Resolution</li>
+          <li>Team Leadership & Collaboration</li>
+          <li>Adaptability & Time Management</li>
+          <li>Analytical Thinking</li>
         </ul>
       </div>
     </aside>
@@ -133,13 +254,21 @@
             <li>Resolved critical data gaps, improving KPI tracking and dashboard reliability.</li>
           </ul>
 
-          <div class="role-title">General Administration Analyst (Sep 2022 – Dec 2022)</div>
+          <div class="role-title">Business Analyst (Sep 2022 – Dec 2022)</div>
+          <ul>
+            <li>Implemented improved processes by analyzing internal operations and applying best practices to drive service and metric improvements.</li>
+            <li>Defined system specifications and process requirements to enhance customer-facing workflows.</li>
+            <li>Conducted data-driven evaluations of financial, operational, and customer metrics to identify trends and recommend policy and procedural changes.</li>
+            <li>Served as a communication bridge between teams and management, supporting new business initiatives and performance updates.</li>
+          </ul>
+
+          <div class="role-title">General Administration Analyst (Sep 2022 – Dec 2022)</div>
           <ul>
             <li>Coordinated budget planning, procurement, and payroll processes across departments.</li>
             <li>Designed SOPs for financial compliance, supporting audits and forecasting.</li>
           </ul>
 
-          <div class="role-title">Technology Analyst – EDW (Dec 2022 – Oct 2023)</div>
+          <div class="role-title">Technology Analyst – EDW (Dec 2022 – Oct 2023)</div>
           <ul>
             <li>Managed application support and monitoring for DOMO, ITSM, Control-M, and GCP.</li>
             <li>Led change and release management, reviewing MOPs and post-implementation reviews.</li>
@@ -148,15 +277,26 @@
 
         <div>
           <h4>Vivo Mobile Tech Inc.</h4>
-          <p class="gray">Full-time • Sep 2018 – Dec 2021 (2 yrs 9 mos)</p>
+          <p class="gray">Full-time • Sep 2018 – Dec 2021 (2 yrs 9 mos)</p>
 
-          <div class="role-title">Trade Marketing Officer (Sep 2018 – Dec 2021)</div>
+          <div class="role-title">Trade Marketing Officer (Sep 2018 – Dec 2021)</div>
           <ul>
             <li>Developed trade marketing campaigns to boost in-store visibility and sales.</li>
             <li>Collaborated with sales to align promotions with channel strategies and goals.</li>
             <li>Utilized backend tools for campaign tracking and performance reporting.</li>
           </ul>
         </div>
+      </section>
+
+      <section id="roles">
+        <div class="section-title">Relevant Roles</div>
+        <ul>
+          <li>Sr. Data Analyst</li>
+          <li>Business Analyst</li>
+          <li>General Administration Analyst</li>
+          <li>Technology Analyst</li>
+          <li>Trade Marketing Officer</li>
+        </ul>
       </section>
 
       <section id="education">
