@@ -3,27 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resume – Jantonign Reyes</title>
+  <title>Resume & Portfolio – Jantonign Reyes</title>
   <link rel="icon" href="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" type="image/jpeg" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --bg-light: #f5f7fa;
+      --bg-light: #f5f5f7;
       --accent-dark: #2c3e50;
-      --accent-light: #3498db;
+      --accent-light: #e67e22;
       --text-dark: #2c3e50;
-      --text-light: #fff;
+      --text-light: #ffffff;
+      --font-serif: 'Playfair Display', serif;
       --font-sans: 'Montserrat', sans-serif;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background: var(--bg-light); font-family: var(--font-sans); color: var(--text-dark); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg-light);
+      font-family: var(--font-sans);
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
 
-    /* Navigation Bar */
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* COVER PAGE */
+    .cover-page {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: url('path/to/your-hero-image.jpg') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      animation: fadeIn 1s ease-out;
+    }
+    .cover-content {
+      position: relative;
+      text-align: center;
+      color: var(--text-light);
+      max-width: 700px;
+      padding: 1rem;
+      animation: fadeIn 1.2s ease-out;
+    }
+    .cover-content h1 {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+      animation: fadeIn 1.4s ease-out;
+    }
+    .cover-content p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+      animation: fadeIn 1.6s ease-out;
+    }
+    .cover-cta {
+      display: inline-block;
+      background: var(--accent-light);
+      color: var(--text-light);
+      padding: 0.75rem 1.75rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.3s;
+      animation: fadeIn 1.8s ease-out;
+    }
+    .cover-cta:hover {
+      background: var(--text-light);
+      color: var(--accent-dark);
+    }
+
+    /* NAV BAR */
     nav {
       background: var(--accent-dark);
       padding: 1rem;
@@ -37,38 +103,41 @@
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 600;
+      transition: color 0.3s;
     }
     nav a:hover { color: var(--accent-light); }
 
-    /* Print button */
+    /* PRINT BUTTON */
     .download-btn {
       display: inline-block;
       background: var(--accent-dark);
       color: var(--text-light);
       padding: 0.75rem 1.5rem;
-      margin: 1rem auto;
+      margin: 1.5rem auto;
       border: none;
       border-radius: 4px;
       font-weight: 600;
       cursor: pointer;
       text-align: center;
       transition: background 0.3s ease;
+      animation: fadeIn 2s ease-out;
     }
     .download-btn:hover { background: var(--accent-light); }
 
-    /* Container */
+    /* LAYOUT */
     .resume-container {
       max-width: 900px;
-      margin: 0 auto 2rem;
+      margin: 2rem auto;
       background: #fff;
       display: grid;
-      grid-template-columns: 250px 1fr;
-      border-radius: 8px;
+      grid-template-columns: 260px 1fr;
+      border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      animation: fadeIn 2s ease-out;
     }
 
-    /* Sidebar */
+    /* SIDEBAR */
     .sidebar {
       background: var(--accent-dark);
       color: var(--text-light);
@@ -78,23 +147,25 @@
       align-items: center;
     }
     .sidebar img {
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid var(--text-light);
+      border: 4px solid var(--text-light);
+      margin-bottom: 1rem;
+      animation: fadeIn 2.2s ease-out;
     }
     .sidebar h2 {
-      margin-top: 1rem;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       font-weight: 600;
       text-align: center;
+      margin-bottom: 1rem;
+      animation: fadeIn 2.4s ease-out;
     }
-    .contact,
-    .section-trainings,
-    .section-skills {
+    .contact, .section-trainings, .section-skills {
       width: 100%;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
+      animation: fadeIn 2.6s ease-out;
     }
     .contact p {
       font-size: 0.9rem;
@@ -106,28 +177,20 @@
     .section-skills h3 {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
       color: var(--accent-light);
-      text-align: left;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
     }
     .section-trainings ul,
-    .section-skills ul {
-      list-style: none;
-      padding-left: 0;
-    }
+    .section-skills ul { list-style: none; padding-left: 0; }
     .section-trainings li,
-    .section-skills li {
-      font-size: 0.85rem;
-      line-height: 1.4;
-      margin-bottom: 0.3rem;
-    }
+    .section-skills li { font-size: 0.9rem; margin-bottom: 0.3rem; }
 
-    /* Main content */
+    /* MAIN CONTENT */
     .main-content { padding: 2rem; }
     .section-title {
       position: relative;
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 1rem;
       padding-bottom: 0.3rem;
@@ -138,54 +201,135 @@
       position: absolute;
       left: 0;
       bottom: 0;
-      width: 50px;
-      height: 3px;
+      width: 60px;
+      height: 4px;
       background: var(--accent-light);
     }
     section { margin-bottom: 2rem; }
     p { margin-bottom: 1rem; }
     ul { list-style: disc; margin-left: 1.25rem; margin-bottom: 1rem; }
-    .role-title { font-size: 1.1rem; font-weight: 600; color: var(--accent-light); margin-top: 1rem; }
+    .role-title { font-size: 1.2rem; font-weight: 600; color: var(--accent-light); margin-top: 1rem; }
     .gray { color: #777; font-size: 0.9rem; margin-bottom: 0.75rem; }
-    footer { text-align: center; padding: 1rem; font-size: 0.85rem; color: #aaa; }
 
+    /* PORTFOLIO GRID */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 1.25rem;
+    }
+    .portfolio-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .portfolio-card:hover { transform: translateY(-5px); }
+    .portfolio-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .portfolio-card:hover .card-overlay { opacity: 1; }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 1.5rem;
+      max-width: 700px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 6px;
+      position: relative;
+    }
+    .close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE */
     @media(max-width:768px) {
       nav { font-size: 0.9rem; }
       .resume-container { grid-template-columns: 1fr; }
-      .sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 1rem; }
-      .sidebar img { margin: 0 auto; }
-      .sidebar h2 { width: 100%; text-align: center; margin: 1rem 0; }
-      .contact,
-      .section-trainings,
-      .section-skills { margin: 1rem; }
+      .sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .sidebar img { margin-bottom: 1rem; }
+      .sidebar h2 { width: 100%; text-align: center; margin-bottom: 1rem; }
+      .contact, .section-trainings, .section-skills { margin: 1rem; }
     }
   </style>
 </head>
 <body>
+
+  <!-- COVER PAGE -->
+  <section class="cover-page" aria-label="Cover">
+    <div class="cover-overlay"></div>
+    <div class="cover-content">
+      <h1>Hi, I’m Jantonign "Jan"</h1>
+      <p>A result-driven Analytics & Automation Specialist who builds data-driven dashboards, RPA workflows, and BI solutions that supercharge operations. With over six years of hands-on experience in Business Analytics, Operations Improvement, and Administrative roles, I’m passionate about turning complex data into clear, actionable insights that drive efficiency, growth, and strategic decision-making.</p>
+      <a href="#objective" class="cover-cta">Explore My Story</a>
+    </div>
+  </section>
+
+  <!-- NAVIGATION -->
   <nav aria-label="Resume navigation">
     <a href="#objective">Objective</a>
     <a href="#trainings">Trainings</a>
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#roles">Roles</a>
     <a href="#education">Education</a>
     <a href="#assessments">Assessments</a>
   </nav>
 
+  <!-- DOWNLOAD -->
   <div style="text-align:center;">
     <button class="download-btn" onclick="window.print()">Download as PDF</button>
   </div>
 
+  <!-- MAIN CONTAINER -->
   <div class="resume-container">
+    <!-- SIDEBAR -->
     <aside class="sidebar">
       <img src="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" alt="Jantonign Reyes" />
       <h2>Jantonign Reyes</h2>
       <div class="contact">
         <p>Age 33 • Male • Single</p>
-        <p>(+63) 919 604 1925<br><a href="mailto:jantonignsreyes@gmail.com" style="color:var(--text-light); text-decoration:none;">jantonignsreyes@gmail.com</a></p>
+        <p>(+63) 919 604 1925<br>
+           <a href="mailto:jantonignsreyes@gmail.com" style="color:var(--text-light); text-decoration:none;">jantonignsreyes@gmail.com</a></p>
         <p>Moonwalk, Parañaque City, 1709</p>
       </div>
 
+      <!-- TRAININGS -->
       <div class="section-trainings">
         <h3>Trainings</h3>
         <ul>
@@ -202,6 +346,7 @@
         </ul>
       </div>
 
+      <!-- SKILLS -->
       <div class="section-skills">
         <h3>Technical Skills</h3>
         <ul>
@@ -214,7 +359,6 @@
           <li>Notion</li>
           <li>AirTable</li>
           <li>Zapier</li>
-
         </ul>
         <h3>Administrative Skills</h3>
         <ul>
@@ -236,14 +380,17 @@
           <li>Analytical Thinking</li>
         </ul>
       </div>
-    </aside>
+    </aside>  
 
+    <!-- MAIN CONTENT -->
     <div class="main-content">
+      <!-- OBJECTIVE -->
       <section id="objective">
         <div class="section-title">Objective</div>
         <p>Result-driven professional blending Mass Communications, Business Administration, and Data Analytics expertise. Adept at leveraging AI-driven automation and BI tools to optimize operations, marketing, and strategic decision-making. Seeking roles in Business Analytics, Operations Improvement, or Administration to deliver innovative, impactful solutions.</p>
       </section>
 
+      <!-- EXPERIENCE -->
       <section id="experience">
         <div class="section-title">Work Experience</div>
 
@@ -257,7 +404,6 @@
             <li>Managed identity, weblogic, and cloud environments, including resolution of alerts to minimize downtime.</li>
             <li>Led end-to-end change and release management, serving as the primary reviewer for MOPs and attending all relevant reviews (POMs, PIRs).</li>
           </ul>
-        </div>
 
           <div class="role-title">Business Analyst (Sep 2022 – Jun 2023)</div>
           <ul>
@@ -275,12 +421,13 @@
             <li>Designed documentation protocols and SOPs for budget and compliance tracking.</li>
           </ul>
 
-                  <div class="role-title">Sr. Data Analyst (Jun 2021 – Dec 2021)</div>
+          <div class="role-title">Sr. Data Analyst (Jun 2021 – Dec 2021)</div>
           <ul>
             <li>Led time-sensitive, high-impact data analyses to support strategic initiatives and cross-functional decisions.</li>
             <li>Supervised and mentored a team of analysts, enhancing report accuracy and consistency.</li>
             <li>Resolved critical data gaps, improving KPI tracking and dashboard reliability.</li>
           </ul>
+        </div>
 
         <div>
           <h4>Vivo Mobile Tech Inc.</h4>
@@ -295,6 +442,162 @@
         </div>
       </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-title">Portfolio</div>
+  <div class="portfolio-grid">
+    <!-- CARD: Scented Mirage — Logo Redesign -->
+    <div
+      class="portfolio-card"
+      data-title="Scented Mirage — Logo Redesign"
+      data-type="comparison"
+      data-old-src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/SM_LOGO_OLD.png"
+      data-new-src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/SM_LOGO_NEW.png"
+      data-desc='
+        <h4>Before (Old Logo)</h4>
+        <ul>
+          <li>Serif “M” inside a celestial circle</li>
+          <li>Star elements suggesting “mirage” and fantasy</li>
+          <li>Geometric typeface for “SCENTED MIRAGE”</li>
+        </ul>
+        <h4>What Worked</h4>
+        <ul>
+          <li>Symbolic and structured</li>
+          <li>Balanced layout with a classic feel</li>
+          <li>Strong brand presence</li>
+        </ul>
+        <h4>What Needed Change</h4>
+        <ul>
+          <li>Felt dated and rigid</li>
+          <li>Lacked personal touch</li>
+          <li>Didn’t fully express the elegance the client envisioned</li>
+        </ul>
+        <h4>After (New Logo)</h4>
+        <ul>
+          <li>“SM” initials in a smooth, handwritten style</li>
+          <li>“S” subtly forms a heart shape, symbolizing warmth and connection</li>
+          <li>Original “SCENTED MIRAGE” font retained for continuity</li>
+        </ul>
+        <h4>Why It Works</h4>
+        <ul>
+          <li>Feels like a personal signature — elegant and memorable</li>
+          <li>Adds emotional appeal while staying clean and modern</li>
+          <li>More adaptable across packaging, print, and digital assets</li>
+          <li>Honors the old design by keeping the brand font and initials</li>
+        </ul>
+        <h4>Design Outcome</h4>
+        <p>A refined evolution of the brand — from structured and classic to personal and sophisticated.</p>
+      '
+    >
+      <img
+        src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/SM_LOGO_NEW.png"
+        alt="Scented Mirage New Logo"
+      />
+      <div class="card-overlay">
+        <h3>Scented Mirage — Logo Redesign</h3>
+      </div>
+    </div>
+
+    <!-- CARD: Scented Mirage Website -->
+    <div
+      class="portfolio-card"
+      data-title="Scented Mirage Website"
+      data-type="image"
+      data-src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/coverpage.png"
+      data-desc='
+        <h4>Website Screenshots</h4>
+        <ul style="list-style:none; padding:0;">
+          <li><strong>Cover Page</strong><br>
+            <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/coverpage.png" style="width:100%; margin:0.5rem 0;" alt="Cover Page"/>
+          </li>
+          <li><strong>FAQ Page</strong><br>
+            <img src="https://raw.githubusercontent.com/jantwonine/resume/01e6af02aec721b91c7acb5e69cf8e781a989e9c/FAQ.png" style="width:100%; margin:0.5rem 0;" alt="FAQ Page"/>
+          </li>
+          <li><strong>Shopping Bag</strong><br>
+            <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/sbag.png" style="width:100%; margin:0.5rem 0;" alt="Shopping Bag"/>
+          </li>
+          <li><strong>Order Tracker Page</strong><br>
+            <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/TT.png" style="width:100%; margin:0.5rem 0;" alt="TT Page"/>
+          </li>
+        </ul>
+      '
+    >
+      <img
+        src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/coverpage.png"
+        alt="Scented Mirage Website Cover"
+      />
+      <div class="card-overlay">
+        <h3>Scented Mirage Website</h3>
+      </div>
+    </div>
+
+    <!-- CARD: LIVO Content Roadmap -->
+<div
+  class="portfolio-card"
+  data-title="LIVO Content Roadmap"
+  data-type="image"
+  data-src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/mission.png"
+  data-desc='
+    <h4>LIVO Content Roadmap</h4>
+    <ul style="list-style:none; padding:0;">
+      <li><strong>Our Mission</strong><br>
+        <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/mission.png" style="width:100%; margin:0.5rem 0;" alt="LIVO Mission"/>
+      </li>
+      <li><strong>Phase 1</strong><br>
+        <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Phase1.png" style="width:100%; margin:0.5rem 0;" alt="LIVO Phase 1"/>
+      </li>
+      <li><strong>Phase 2</strong><br>
+        <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Phase2.png" style="width:100%; margin:0.5rem 0;" alt="LIVO Phase 2"/>
+      </li>
+      <li><strong>Phase 3</strong><br>
+        <img src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Phase3.png" style="width:100%; margin:0.5rem 0;" alt="LIVO Phase 3"/>
+      </li>
+    </ul>
+  '
+>
+  <img
+    src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/mission.png"
+    alt="LIVO Content Roadmap"
+  />
+  <div class="card-overlay">
+    <h3>LIVO Content Roadmap</h3>
+  </div>
+</div>
+
+
+<!-- CARD: Automation Stages -->
+<div
+  class="portfolio-card"
+  data-title="Automation Stages"
+  data-type="image"
+  data-src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/BPA.png"
+  data-desc='
+    <h4>Automation Stages Diagram</h4>
+    <img
+      src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/BPA.png"
+      style="width:100%; margin:0.5rem 0;"
+      alt="Automation Stages Diagram"
+    />
+  '
+>
+  <img
+    src="https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/BPA.png"
+    alt="Automation Stages Thumbnail"
+  />
+  <div class="card-overlay">
+    <h3>Automation Stages</h3>
+  </div>
+</div>
+
+
+    <!-- you can add more cards here if needed -->
+
+    
+  </div>
+</section>
+
+
+      <!-- ROLES -->
       <section id="roles">
         <div class="section-title">Relevant Roles</div>
         <ul>
@@ -303,15 +606,18 @@
           <li>General Administration Analyst</li>
           <li>Technology Analyst</li>
           <li>Trade Marketing Officer</li>
+          <li>Executive Assistant</li>
         </ul>
       </section>
 
+      <!-- EDUCATION -->
       <section id="education">
         <div class="section-title">Education</div>
         <p><strong>MBA</strong>, Central Colleges of the Philippines (2019–2022)</p>
         <p><strong>BA Mass Communications</strong>, Far Eastern University (2009–2015)</p>
       </section>
 
+      <!-- ASSESSMENTS -->
       <section id="assessments">
         <div class="section-title">Assessments</div>
         <ul>
@@ -322,6 +628,94 @@
     </div>
   </div>
 
-  <footer>&copy; 2025 Jantonign Reyes. All rights reserved.</footer>
+  <!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <div class="modal-body"></div>
+  </div>
+</div>
+
+  <footer style="text-align:center;padding:1rem; color: var(--accent-dark);">
+    &copy; 2025 Jantonign Reyes. All rights reserved.
+  </footer>
+
+<script>
+  // wait until all cards are in the DOM
+  document.querySelectorAll('.portfolio-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const modal = document.getElementById('modal');
+      const body  = modal.querySelector('.modal-body');
+      body.innerHTML = '';
+
+      // Title
+      const titleEl = document.createElement('h3');
+      titleEl.textContent = card.dataset.title;
+      body.appendChild(titleEl);
+
+      // Media (comparison / image / video)
+      if (card.dataset.type === 'comparison') {
+        const wrap = document.createElement('div');
+        wrap.style.display = 'flex';
+        wrap.style.gap     = '1rem';
+
+        ['oldSrc', 'newSrc'].forEach(key => {
+          const img = document.createElement('img');
+          img.src   = card.dataset[key];
+          img.style.width  = '45%';
+          img.style.border = '1px solid #ccc';
+          wrap.appendChild(img);
+        });
+
+        body.appendChild(wrap);
+      } else {
+        const isVideo = card.dataset.type === 'video';
+        const tagName = isVideo ? 'video' : 'img';
+        const media   = document.createElement(tagName);
+
+        media.src = card.dataset.src;
+        if (isVideo) {
+          media.controls = true;
+          media.style.maxWidth = '100%';
+        } else {
+          media.style.width = '100%';
+        }
+
+        body.appendChild(media);
+      }
+
+      // Description (HTML)
+      const descEl = document.createElement('div');
+      descEl.innerHTML = card.dataset.desc;
+      body.appendChild(descEl);
+
+      modal.style.display = 'flex';
+    });
+  });
+
+  // Close logic
+  (function(){
+    const modal    = document.getElementById('modal');
+    const closeBtn = modal.querySelector('.close');
+
+    // click the ×
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      const vid = modal.querySelector('video');
+      if (vid) vid.pause();
+    });
+
+    // click outside the modal-content
+    modal.addEventListener('click', e => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+        const vid = modal.querySelector('video');
+        if (vid) vid.pause();
+      }
+    });
+  })();
+</script>
+
+
 </body>
 </html>
