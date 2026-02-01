@@ -3,1406 +3,456 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b1220" />
-  <meta name="description" content="Jantonign S. Reyes — Data, Automation, Operations, and Strategy." />
-  <title>Jantonign S. Reyes | Profile</title>
+  <meta name="theme-color" content="#070b14" />
+  <meta name="description" content="Jantonign S. Reyes — profile site cover." />
+  <title>Welcome | Jantonign S. Reyes</title>
 
-  <!-- Favicon -->
   <link rel="icon" href="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" type="image/jpeg" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Jantonign S. Reyes | Profile" />
-  <meta property="og:description" content="Strategy, systems, and communication — with data, automation, and AI-assisted development." />
-  <meta property="og:image" content="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" />
-  <meta property="og:type" content="website" />
 
   <style>
     :root{
-      --bg0:#070b14;
-      --bg1:#0b1220;
-      --card:#0f1a31cc;
-      --card2:#0f1a3122;
+      --bg:#070b14;
       --txt:#e9eefc;
       --muted:#a8b3d6;
-      --line:#1f2a44;
+      --line: rgba(255,255,255,.10);
+      --glass: rgba(12,18,34,.62);
+      --glass2: rgba(255,255,255,.06);
       --brand:#7c5cff;
       --brand2:#33d6ff;
-      --ok:#3cffb3;
-      --shadow: 0 14px 40px rgba(0,0,0,.35);
-      --radius: 18px;
+      --shadow: 0 24px 90px rgba(0,0,0,.55);
+      --radius: 22px;
     }
-    [data-theme="light"]{
-      --bg0:#f6f7fb;
-      --bg1:#ffffff;
-      --card:#ffffffcc;
-      --card2:#ffffffaa;
-      --txt:#0a1020;
-      --muted:#3c4a70;
-      --line:#dde3f2;
-      --brand:#5a39ff;
-      --brand2:#00a8d6;
-      --ok:#0a9b6a;
-      --shadow: 0 12px 28px rgba(10,16,32,.12);
-    }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: var(--bg);
       color:var(--txt);
-      background: radial-gradient(1100px 700px at 10% 10%, rgba(124,92,255,.22), transparent 60%),
-                  radial-gradient(900px 600px at 80% 20%, rgba(51,214,255,.18), transparent 55%),
-                  linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
-
-    /* Subtle animated noise overlay */
-    .noise{
-      pointer-events:none;
-      position:fixed; inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      opacity:.25;
-      mix-blend-mode:overlay;
-      animation: drift 18s linear infinite;
-    }
-    @keyframes drift{
-      0%{transform:translate3d(0,0,0)}
-      100%{transform:translate3d(-40px, 30px, 0)}
-    }
-
-    /* Top bar */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, rgba(10,16,32,.75), rgba(10,16,32,.35));
-      border-bottom:1px solid var(--line);
-    }
-    [data-theme="light"] .topbar{
-      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
-    }
-    .container{max-width:1100px;margin:0 auto;padding:0 18px}
-    .bar{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
-      gap:12px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      text-decoration:none; color:var(--txt);
-    }
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: var(--shadow);
-      position:relative;
       overflow:hidden;
     }
-    .logo::after{
-      content:"";
-      position:absolute; inset:-60%;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.55), transparent 45%);
-      transform: rotate(15deg);
-      animation: sheen 2.8s ease-in-out infinite;
-    }
-    @keyframes sheen{
-      0%,100%{transform:translateX(-10%) rotate(15deg); opacity:.55}
-      50%{transform:translateX(15%) rotate(15deg); opacity:.85}
-    }
-    .brand span{font-weight:800; letter-spacing:.2px}
-    nav{
-      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    nav a{
-      color:var(--muted);
-      text-decoration:none;
-      font-weight:650;
-      font-size:14px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid transparent;
-      transition: all .18s ease;
-    }
-    nav a:hover{
-      color:var(--txt);
-      border-color:var(--line);
-      background: var(--card2);
-    }
-    .btn{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), transparent);
-      color:var(--txt);
-      font-weight:700;
-      padding:9px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      transition: transform .12s ease, border-color .18s ease;
-      display:inline-flex; align-items:center; gap:8px;
-    }
-    .btn:hover{transform:translateY(-1px); border-color:rgba(124,92,255,.45)}
-    .btn:active{transform:translateY(0)}
-    .btn.primary{
-      border-color: transparent;
-      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(51,214,255,.85));
-      color:#081022;
-      box-shadow: 0 12px 34px rgba(124,92,255,.22);
-    }
-    .btn.ghost{
-      background: transparent;
-    }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--line);
-      background: var(--card2);
-      border-radius:999px;
-      padding:7px 10px;
-      color:var(--muted);
-      font-weight:650;
-      font-size:13px;
+
+    /* Vanta background */
+    #vantaCover{
+      position:fixed;
+      inset:0;
+      z-index:0;
     }
 
-    /* Hero */
-    .hero{
-      padding:40px 0 26px;
+    /* Center layout */
+    .wrap{
       position:relative;
-    }
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    @media (max-width: 920px){
-      .heroGrid{grid-template-columns:1fr; }
-    }
-    .panel{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), transparent);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .panel::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(600px 260px at 25% 15%, rgba(124,92,255,.20), transparent 60%),
-                  radial-gradient(600px 260px at 85% 20%, rgba(51,214,255,.14), transparent 60%);
-      pointer-events:none;
-    }
-    .panelInner{position:relative; padding:22px}
-    h1{
-      margin:0 0 10px;
-      font-size: clamp(28px, 4vw, 46px);
-      letter-spacing:-.6px;
-      line-height:1.05;
-    }
-    .subtitle{
-      margin:0;
-      color:var(--muted);
-      font-size: 16px;
-      line-height:1.55;
-      max-width: 60ch;
-    }
-    .ctaRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:16px;
+      z-index:1;
+      min-height:100%;
+      display:flex;
       align-items:center;
-    }
-
-    /* Avatar card */
-    .avatarWrap{
-      display:flex; flex-direction:column; gap:12px; height:100%;
-    }
-    .avatarCard{
-      display:flex; gap:14px; align-items:center;
-      padding:18px;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), transparent);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-      min-height: 140px;
-    }
-    .avatarCard::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(520px 220px at 15% 25%, rgba(51,214,255,.16), transparent 60%),
-                  radial-gradient(520px 220px at 85% 25%, rgba(124,92,255,.18), transparent 60%);
-      pointer-events:none;
-    }
-    .avatar{
-      width:86px; height:86px; border-radius: 22px;
-      object-fit: cover;
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: 0 16px 40px rgba(0,0,0,.25);
-      transform: translateZ(0);
-    }
-    [data-theme="light"] .avatar{
-      border:1px solid rgba(10,16,32,.12);
-    }
-    .who{position:relative}
-    .who .name{font-size:18px; font-weight:850; margin:0}
-    .who .role{margin:4px 0 0; color:var(--muted); font-weight:650}
-    .contactRow{
-      display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;
-    }
-    .mini{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--line);
-      background: var(--card2);
-      padding:8px 10px;
-      border-radius: 12px;
-      font-size:13px;
-      color:var(--muted);
-      text-decoration:none;
-      transition: all .16s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .mini:hover{transform:translateY(-1px); color:var(--txt); border-color:rgba(51,214,255,.35)}
-    .mini b{color:var(--txt); font-weight:800}
-
-    /* Sections */
-    section{padding:22px 0}
-    .sectionTitle{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      margin: 18px 0 10px;
-    }
-    .sectionTitle h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.2px;
-    }
-    .sectionTitle p{
-      margin:0;
-      color:var(--muted);
-      font-size: 14px;
-      max-width: 70ch;
-    }
-
-    .grid{
-      display:grid; gap:12px;
-      grid-template-columns: repeat(12, 1fr);
-    }
-    .col-6{grid-column: span 6}
-    .col-4{grid-column: span 4}
-    .col-8{grid-column: span 8}
-    .col-12{grid-column: span 12}
-    @media (max-width: 920px){
-      .col-6,.col-4,.col-8{grid-column: span 12}
+      justify-content:center;
+      padding:24px;
     }
 
     .card{
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), transparent);
+      width:min(980px, 100%);
       border-radius: var(--radius);
-      padding:16px;
+      border: 1px solid var(--line);
+      background: var(--glass);
       box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(12px);
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 320px at 20% 10%, rgba(124,92,255,.25), transparent 60%),
+        radial-gradient(700px 320px at 80% 20%, rgba(51,214,255,.18), transparent 62%);
+      pointer-events:none;
+    }
+
+    .inner{
+      position:relative;
+      padding: 28px 26px 22px;
+      display:flex;
+      gap:18px;
+      align-items:flex-start;
+    }
+    @media (max-width: 820px){
+      .inner{flex-direction:column; align-items:stretch;}
+    }
+
+    .left{
+      flex: 0 0 auto;
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .avatar{
+      width:88px;
+      height:88px;
+      border-radius: 22px;
+      object-fit: cover;
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: 0 18px 46px rgba(0,0,0,.28);
+    }
+
+    .nameBlock{
+      min-width:0;
+    }
+    .kicker{
+      display:inline-block;
+      font-weight:800;
+      font-size:12px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color: var(--muted);
+      border:1px solid var(--line);
+      background: var(--glass2);
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    h1{
+      margin:10px 0 0;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing:-.8px;
+      line-height:1.05;
+      color: var(--txt);
+    }
+    .subtitle{
+      margin:8px 0 0;
+      color: var(--muted);
+      font-weight:650;
+      line-height:1.6;
+      max-width: 62ch;
+    }
+
+    .right{
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    /* Dialogue box */
+    .dialogue{
+      margin-top: 2px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      padding: 14px 14px;
       position:relative;
       overflow:hidden;
-      transform: translateY(8px);
-      opacity: 0;
-      transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .55s ease;
     }
-    .card.reveal{
-      transform: translateY(0);
-      opacity: 1;
-    }
-    .cardHeader{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-bottom: 8px;
-    }
-    .card h3{margin:0; font-size:15px; letter-spacing:.2px}
-    .card p{margin:8px 0 0; color:var(--muted); line-height:1.6}
-    ul{
-      margin:10px 0 0;
-      padding-left: 18px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-    li{margin:6px 0}
-    .tags{
-      display:flex; flex-wrap:wrap; gap:8px; margin-top:10px
-    }
-    .tag{
-      font-size:12px;
-      border:1px solid var(--line);
-      background: var(--card2);
-      color:var(--muted);
-      padding:6px 9px;
-      border-radius: 999px;
-    }
-
-    /* Docs buttons */
-    .docRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .docBtn{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:10px;
-      width:100%;
-      padding:12px 12px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), transparent);
-      color:var(--txt);
-      cursor:pointer;
-      transition: transform .12s ease, border-color .18s ease;
-    }
-    .docBtn:hover{transform:translateY(-1px); border-color: rgba(124,92,255,.40)}
-    .docBtn small{color:var(--muted); font-weight:650}
-    .docBtn .right{display:flex; gap:8px; align-items:center}
-
-    /* Footer */
-    footer{
-      padding:26px 0 38px;
-      color:var(--muted);
-    }
-    .foot{
-      border-top:1px solid var(--line);
-      padding-top:18px;
-      display:flex; gap:12px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;
-    }
-
-    /* Toast */
-    .toast{
-      position:fixed;
-      bottom:18px; left:50%;
-      transform:translateX(-50%) translateY(18px);
-      background: rgba(15,26,49,.92);
-      border: 1px solid rgba(255,255,255,.12);
-      color: var(--txt);
-      padding:10px 12px;
-      border-radius: 14px;
-      box-shadow: var(--shadow);
-      opacity:0;
+    .dialogue::before{
+      content:"";
+      position:absolute;
+      inset:-40%;
+      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.10), transparent 45%);
+      transform: rotate(10deg);
       pointer-events:none;
-      transition: all .22s ease;
-      z-index:100;
-      max-width: calc(100vw - 28px);
-      text-align:center;
-      font-weight:700;
-      letter-spacing:.2px;
-    }
-    [data-theme="light"] .toast{
-      background: rgba(255,255,255,.92);
-      border: 1px solid rgba(10,16,32,.10);
-      color: var(--txt);
-    }
-    .toast.show{
-      opacity:1;
-      transform:translateX(-50%) translateY(0);
     }
 
-    /* Modal */
-    dialog{
-      width: min(980px, calc(100vw - 22px));
+    .dialogueTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .npcTag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:850;
+      font-size:13px;
+      color: var(--txt);
+    }
+    .status{
+      font-size:12px;
+      color: var(--muted);
       border:1px solid var(--line);
-      border-radius: 18px;
-      padding:0;
-      overflow:hidden;
-      background: var(--bg1);
-      color: var(--txt);
-      box-shadow: 0 22px 70px rgba(0,0,0,.45);
-    }
-    dialog::backdrop{
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-    }
-    .modalTop{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 12px;
-      border-bottom:1px solid var(--line);
-      background: linear-gradient(180deg, var(--card), transparent);
-    }
-    .modalTop strong{font-size:14px}
-    .modalBody{
-      height: min(72vh, 760px);
-      background: var(--bg1);
-    }
-    .modalBody object{
-      width:100%;
-      height:100%;
-      border:0;
-      background: var(--bg1);
+      background: rgba(255,255,255,.04);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:750;
     }
 
-    /* Small helpers */
-    .sr{position:absolute; left:-9999px}
-    .muted{color:var(--muted)}
-    .sep{height:1px;background:var(--line); margin:12px 0}
+    .typeLine{
+      position:relative;
+      font-weight:750;
+      color: var(--txt);
+      line-height:1.65;
+      min-height: 3.2em; /* keeps layout stable while deleting/typing */
+    }
+    .cursor{
+      display:inline-block;
+      width: 10px;
+      height: 1.15em;
+      margin-left: 2px;
+      background: rgba(233,238,252,.9);
+      vertical-align: -2px;
+      border-radius: 3px;
+      animation: blink 1s steps(1,end) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hintRow{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .hint{
+      color: var(--muted);
+      font-size:13px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .pill{
+      display:inline-flex;
+      width:28px;
+      height:28px;
+      align-items:center;
+      justify-content:center;
+      border-radius: 10px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      flex:0 0 auto;
+    }
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    @media (max-width: 820px){
+      .actions{justify-content:flex-start;}
+    }
+
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: var(--txt);
+      font-weight:850;
+      padding:10px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition: transform .12s ease, border-color .18s ease;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(124,92,255,.45);}
+    .btn:active{transform: translateY(0);}
+
+    .btn.primary{
+      border:0;
+      color:#081022;
+      background: linear-gradient(135deg, rgba(124,92,255,.98), rgba(51,214,255,.88));
+      box-shadow: 0 12px 34px rgba(124,92,255,.22);
+    }
+
     .kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size:12px;
       padding: 2px 7px;
       border-radius: 8px;
       border:1px solid var(--line);
-      background: var(--card2);
+      background: rgba(255,255,255,.04);
       color: var(--muted);
     }
 
-    /* Background canvas */
-    #bgCanvas{
-      position:fixed; inset:0;
-      z-index:-1;
-      opacity:.9;
-      pointer-events:none;
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .cursor{animation:none}
+      .btn{transition:none}
     }
-
-/* -------- Experience timeline -------- */
-.timeline{
-  position:relative;
-  margin-top:12px;
-  padding-left:18px;
-}
-.timeline::before{
-  content:"";
-  position:absolute;
-  left:6px;
-  top:6px;
-  bottom:6px;
-  width:2px;
-  background: linear-gradient(180deg, rgba(124,92,255,.55), rgba(51,214,255,.35));
-  border-radius: 2px;
-  opacity:.65;
-}
-
-.timeline details{
-  position:relative;
-  margin: 10px 0;
-  border:1px solid var(--line);
-  background: linear-gradient(180deg, var(--card), transparent);
-  border-radius: 16px;
-  box-shadow: 0 10px 26px rgba(0,0,0,.22);
-  overflow:hidden;
-  transition: transform .12s ease, border-color .18s ease;
-}
-.timeline details:hover{
-  transform: translateY(-1px);
-  border-color: rgba(124,92,255,.40);
-}
-
-.timeline details::before{
-  content:"";
-  position:absolute;
-  left:-16px;
-  top:18px;
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.65), rgba(255,255,255,0) 55%),
-              linear-gradient(135deg, var(--brand), var(--brand2));
-  box-shadow: 0 0 0 4px rgba(124,92,255,.12);
-}
-
-.timeline summary{
-  list-style:none;
-  cursor:pointer;
-  padding: 12px 12px 12px 14px;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:12px;
-}
-.timeline summary::-webkit-details-marker{ display:none; }
-
-.tl-left{min-width:0}
-.tl-title{
-  margin:0;
-  font-weight:850;
-  letter-spacing:.2px;
-}
-.tl-meta{
-  margin:6px 0 0;
-  color:var(--muted);
-  font-weight:650;
-  font-size:13px;
-  line-height:1.35;
-}
-.tl-meta span{white-space:nowrap}
-.tl-meta .dot{opacity:.55; padding:0 8px}
-.tl-right{
-  display:flex;
-  gap:8px;
-  align-items:center;
-  flex:0 0 auto;
-}
-.tl-pill{
-  font-size:12px;
-  border:1px solid var(--line);
-  background: var(--card2);
-  color:var(--muted);
-  padding:6px 9px;
-  border-radius:999px;
-  font-weight:750;
-}
-
-.tl-body{
-  padding: 0 14px 12px 14px;
-  color:var(--muted);
-  line-height:1.65;
-}
-.tl-body p (margin:0){}
-
-.timeline details[open]{
-  border-color: rgba(51,214,255,.35);
-}
-
   </style>
 </head>
 
 <body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
-  <div class="noise" aria-hidden="true"></div>
+  <div id="vantaCover" aria-hidden="true"></div>
 
-  <header class="topbar">
-    <div class="container">
-      <div class="bar">
-        <a class="brand" href="#top">
-          <div class="logo" aria-hidden="true"></div>
-          <span>Jantonign S. Reyes</span>
-        </a>
-
-        <nav aria-label="Primary">
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#highlights">Highlights</a>
-          <a href="#docs">Documents</a>
-          <a href="#contact">Contact</a>
-          <button class="btn ghost" id="themeBtn" type="button" title="Toggle theme">
-            <span aria-hidden="true">🌓</span><span>Theme</span>
-          </button>
-<a class="btn primary"
-   href="https://raw.githubusercontent.com/jantwonine/resume/main/Jan29_cv.pdf"
-   download
-   target="_blank"
-   rel="noreferrer">
-  <span aria-hidden="true">⬇️</span><span>Resume (PDF)</span>
-</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <main id="top" class="container">
-    <!-- HERO -->
-    <div class="hero">
-      <div class="heroGrid">
-        <div class="panel">
-          <div class="panelInner">
-            <div class="chip" title="Focus areas">
-              <span aria-hidden="true">✨</span>
-              <span>Strategy • Systems • Communication</span>
-            </div>
-
-            <h1>Data + automation<br/>for faster, clearer operations.</h1>
-
-            <p class="subtitle">
-              Strategic and results-driven professional with a blend of communication, business management,
-              and technical automation skills. I use data analytics and AI-assisted tools to turn messy inputs
-              into practical outputs that teams can act on.
-            </p>
-
-            <div class="ctaRow">
-              <a class="btn primary" href="#contact">
-                <span aria-hidden="true">✉️</span><span>Contact me</span>
-              </a>
-              <button class="btn" type="button" id="copyEmailBtn">
-                <span aria-hidden="true">📋</span><span>Copy email</span>
-              </button>
-              <button class="btn" type="button" id="copyPhoneBtn">
-                <span aria-hidden="true">📞</span><span>Copy phone</span>
-              </button>
-              <span class="kbd">Tip: press <b>/</b> to search sections</span>
-            </div>
-
-            <div class="sep"></div>
-
-            <div class="tags" aria-label="Quick tags">
-              <span class="tag">Power BI</span>
-              <span class="tag">Tableau</span>
-              <span class="tag">Advanced Excel</span>
-              <span class="tag">Basic SQL</span>
-              <span class="tag">HTML/CSS</span>
-              <span class="tag">Process improvement</span>
-              <span class="tag">Dashboards</span>
-              <span class="tag">AI-assisted development</span>
-            </div>
+  <div class="wrap">
+    <div class="card" role="dialog" aria-label="Welcome dialog">
+      <div class="inner">
+        <div class="left">
+          <img class="avatar" src="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" alt="Portrait photo" />
+          <div class="nameBlock">
+            <span class="kicker">Welcome</span>
+            <h1>Jantonign S. Reyes</h1>
+            <p class="subtitle">Business Intelligence • Operations • Automation</p>
           </div>
         </div>
 
-        <div class="avatarWrap">
-          <div class="avatarCard">
-            <img class="avatar" src="https://raw.githubusercontent.com/jantwonine/resume/main/JanDP.jpg" alt="Portrait photo of Jantonign S. Reyes" />
-            <div class="who">
-              <p class="name">Jantonign S. Reyes</p>
-              <p class="role">Business Intelligence • Operations • Automation</p>
+        <div class="right">
+          <div class="dialogue">
+            <div class="dialogueTop">
+              <div class="npcTag">
+                <span aria-hidden="true">💬</span>
+                <span>Me</span>
+              </div>
+              <div class="status" id="talkStatus">Talking…</div>
+            </div>
 
-              <div class="contactRow">
-                <span class="mini" id="emailPill" role="button" tabindex="0" title="Copy email">
-                  <span aria-hidden="true">✉️</span> <b>Email</b> <span class="muted">jantonignsreyes@gmail.com</span>
-                </span>
-                <span class="mini" id="phonePill" role="button" tabindex="0" title="Copy phone">
-                  <span aria-hidden="true">📞</span> <b>Phone</b> <span class="muted">+63 919-604-1925</span>
-                </span>
-                <a class="mini" href="https://www.linkedin.com/in/jantonignsreyes" target="_blank" rel="noreferrer" title="Open LinkedIn">
-                  <span aria-hidden="true">🔗</span> <b>LinkedIn</b> <span class="muted">@jantonignsreyes</span>
+            <div class="typeLine" aria-live="polite">
+              <span id="typeText"></span><span class="cursor" aria-hidden="true"></span>
+            </div>
+
+            <div class="hintRow">
+              <div class="hint">
+                <span class="pill" aria-hidden="true">🎮</span>
+                <span>Press <span class="kbd">Enter</span> to continue, <span class="kbd">Esc</span> to skip.</span>
+              </div>
+              <div class="actions">
+                <a class="btn" href="https://raw.githubusercontent.com/jantwonine/resume/main/Jan29_cv.pdf" target="_blank" rel="noreferrer">
+                  <span aria-hidden="true">⬇️</span><span>Resume PDF</span>
                 </a>
-                <span class="mini" title="Location">
-                  <span aria-hidden="true">📍</span> <b>Based in</b> <span class="muted">Parañaque City</span>
-                </span>
+                <a class="btn primary" id="enterLink" href="main.html">
+                  <span aria-hidden="true">→</span><span>Enter Site</span>
+                </a>
               </div>
             </div>
           </div>
 
-          <div class="card reveal" style="opacity:1;transform:none">
-            <div class="cardHeader">
-              <h3>Quick snapshot</h3>
-              <span class="chip"><span aria-hidden="true">✅</span><span>Open to opportunities</span></span>
-            </div>
-            <p>
-              I enjoy roles where operations, data, and communication meet. If your team needs cleaner workflows,
-              better reporting, or faster execution, I can help.
-            </p>
+          <div style="margin-top:10px; color: var(--muted); font-size: 13px; display:flex; gap:10px; align-items:center;">
+            <span class="pill" aria-hidden="true">🔒</span>
+            <span>No data is collected on this page. It’s just a welcome screen.</span>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="sectionTitle">
-        <h2>About</h2>
-
-      </div>
-
-      <div class="grid">
-        <div class="card col-8">
-          <div class="cardHeader">
-            <h3>Professional summary</h3>
-            <span class="chip"><span aria-hidden="true">🧠</span><span>Systems thinker</span></span>
-          </div>
-          <p>
-            Strategic and results-driven professional with a blend of communication, business management,
-            and technical automation expertise. Skilled in leveraging AI-assisted tools, data analytics, and
-            process improvement to deliver actionable insights, streamline workflows, and improve profitability.
-            Adept at translating complex data into clear narratives and managing stakeholder relationships.
-          </p>
-          <p class="muted" style="margin-top:10px">
-            Education: MBA (in progress), Central Colleges of the Philippines • BA Mass Communication, Far Eastern University
-          </p>
-        </div>
-
-        <div class="card col-4">
-          <div class="cardHeader">
-            <h3>What I do best</h3>
-            <span class="chip"><span aria-hidden="true">🎯</span><span>Execution</span></span>
-          </div>
-          <ul>
-            <li>Turn business questions into dashboards and decision-ready insights.</li>
-            <li>Spot workflow bottlenecks and redesign steps so teams move faster.</li>
-            <li>Build simple web and reporting tools that reduce manual work.</li>
-            <li>Communicate clearly with clients and internal stakeholders.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="sectionTitle">
-        <h2>Core competencies</h2>
-      </div>
-
-      <div class="grid">
-        <div class="card col-6">
-          <div class="cardHeader">
-            <h3>Business intelligence & strategy</h3>
-            <span class="chip"><span aria-hidden="true">📊</span><span>Analytics</span></span>
-          </div>
-          <ul>
-            <li>Data analysis, dashboards, market research, ROI analysis</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">Power BI</span>
-            <span class="tag">Tableau</span>
-            <span class="tag">Excel (advanced)</span>
-            <span class="tag">SQL (basic)</span>
-          </div>
-        </div>
-
-        <div class="card col-6">
-          <div class="cardHeader">
-            <h3>Operations & automation</h3>
-            <span class="chip"><span aria-hidden="true">⚙️</span><span>Process</span></span>
-          </div>
-          <ul>
-            <li>Process improvement, system integration, project management, workflow design</li>
-          </ul>
-          <div class="tags">
-            <span class="tag">System integration</span>
-            <span class="tag">Documentation</span>
-            <span class="tag">QA mindset</span>
-          </div>
-        </div>
-
-        <div class="card col-6">
-          <div class="cardHeader">
-            <h3>Technical skills</h3>
-            <span class="chip"><span aria-hidden="true">🧩</span><span>Build</span></span>
-          </div>
-          <ul>
-            <li>HTML/CSS</li>
-            <li>AI-assisted development</li>
-            <li>Dashboards and lightweight internal tools</li>
-          </ul>
-        </div>
-
-        <div class="card col-6">
-          <div class="cardHeader">
-            <h3>Communications & marketing</h3>
-            <span class="chip"><span aria-hidden="true">🗣️</span><span>People</span></span>
-          </div>
-          <ul>
-            <li>Client relations, stakeholder management, trade marketing, content development</li>
-            <li>Storytelling and research (radio writer/producer/reporter background)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- HIGHLIGHTS -->
-    <section id="highlights">
-      <div class="sectionTitle">
-        <h2>Highlights</h2>
-      </div>
-
-      <div class="grid">
-        <div class="card col-4">
-          <div class="cardHeader">
-            <h3>AI-automated reporting</h3>
-            <span class="chip"><span aria-hidden="true">⏱️</span><span>-40% manual time</span></span>
-          </div>
-          <p>
-            Built AI-assisted tools to automate financial, customer, and employee reports, cutting manual processing
-            by around 40% and improving speed of insights.
-          </p>
-        </div>
-
-        <div class="card col-4">
-          <div class="cardHeader">
-            <h3>System streamlining</h3>
-            <span class="chip"><span aria-hidden="true">📈</span><span>+15% efficiency</span></span>
-          </div>
-          <p>
-            Integrated separate systems to improve data flow and operations, driving an overall efficiency lift
-            of about 15%.
-          </p>
-        </div>
-
-        <div class="card col-4">
-          <div class="cardHeader">
-            <h3>Full-stack delivery</h3>
-            <span class="chip"><span aria-hidden="true">🧱</span><span>End-to-end</span></span>
-          </div>
-          <p>
-            Designed and deployed functional dashboards and small business websites, handling the work from needs
-            analysis through deployment.
-          </p>
-        </div>
-
-<div class="card col-12">
-  <div class="cardHeader">
-    <h3>Experience timeline</h3>
-    <span class="chip"><span aria-hidden="true">🧾</span><span>Most recent → oldest</span></span>
   </div>
 
-  <div class="timeline" aria-label="Experience timeline">
-    <!-- 2023 - Present -->
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">AI Automation Specialist</p>
-          <p class="tl-meta">
-            <span><b>Freelance | Self-Employed</b> • Freelance</span>
-            <span class="dot">•</span>
-            <span>Sep 2023 – Present</span>
-            <span class="dot">•</span>
-            <span>Remote</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Automation</span>
-          <span class="tl-pill">Ops</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        As a freelance business advisor, I help small to medium businesses streamline operations through workflow automation, system integration, and data-driven process improvements. I build efficient, scalable solutions that reduce manual work, improve reporting, and optimize everyday tasks allowing teams to operate faster, smarter, and with greater clarity.
-      </div>
-    </details>
-
-    <!-- TELUS International -->
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">Technology Analyst</p>
-          <p class="tl-meta">
-            <span><b>TELUS International</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Dec 2022 – Oct 2023</span>
-            <span class="dot">•</span>
-            <span>Philippines • Hybrid</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Dashboards</span>
-          <span class="tl-pill">Systems</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Analyzed business needs and delivered automated, data-driven solutions. Streamlined workflows, integrated systems, and built dashboards to enhance efficiency and support smarter decision-making.
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">Business Analyst</p>
-          <p class="tl-meta">
-            <span><b>TELUS International</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Sep 2022 – Dec 2022</span>
-            <span class="dot">•</span>
-            <span>Ortigas</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Analysis</span>
-          <span class="tl-pill">Ops</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Translated data and processes into actionable insights. Improved workflows, optimized operations, and supported strategic decisions through analysis, reporting, and cross-functional coordination.
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">General Administration Analyst</p>
-          <p class="tl-meta">
-            <span><b>TELUS International</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Dec 2021 – Aug 2022</span>
-            <span class="dot">•</span>
-            <span>Philippines</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Process</span>
-          <span class="tl-pill">Admin</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Streamlined administrative workflows, optimized documentation and reporting, and improved resource allocation. Supported daily operations through efficient organization and process enhancements.
-      </div>
-    </details>
-
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">Senior Data Analyst</p>
-          <p class="tl-meta">
-            <span><b>TELUS International</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Jun 2021 – Dec 2021</span>
-            <span class="dot">•</span>
-            <span>Philippines</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Data</span>
-          <span class="tl-pill">Reporting</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Led end-to-end data analysis to deliver insights that guided strategic and operational decisions. Built automated reports and dashboards, improved data accuracy and accessibility, and partnered with cross-functional teams to optimize processes and uncover performance drivers.
-      </div>
-    </details>
-
-    <!-- VIVO -->
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">Trade Marketing Coordinator</p>
-          <p class="tl-meta">
-            <span><b>VIVO MOBILE</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Sep 2018 – May 2021</span>
-            <span class="dot">•</span>
-            <span>Philippines • On-site</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Trade</span>
-          <span class="tl-pill">Growth</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Supported brand and channel growth by analyzing sales data, monitoring market trends, and executing trade strategies. Coordinated promotions, merchandising, and retail initiatives to strengthen visibility and drive sell-through across key channels.
-      </div>
-    </details>
-
-    <!-- Cosmic -->
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">Customer Relations Specialist</p>
-          <p class="tl-meta">
-            <span><b>Cosmic Technologies Incorporated</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Sep 2016 – Sep 2018</span>
-            <span class="dot">•</span>
-            <span>Philippines</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">Support</span>
-          <span class="tl-pill">Clients</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Managed customer inquiries and resolutions, identified service gaps, and improved support workflows. Strengthened client relationships through clear communication, data-driven insights, and timely issue resolution to enhance overall customer experience.
-      </div>
-    </details>
-
-    <!-- Amazon -->
-    <details>
-      <summary>
-        <div class="tl-left">
-          <p class="tl-title">Business Advisor</p>
-          <p class="tl-meta">
-            <span><b>Amazon</b> • Full-time</span>
-            <span class="dot">•</span>
-            <span>Jun 2015 – Dec 2015</span>
-            <span class="dot">•</span>
-            <span>Philippines</span>
-          </p>
-        </div>
-        <div class="tl-right">
-          <span class="tl-pill">E-commerce</span>
-          <span class="tl-pill">Strategy</span>
-        </div>
-      </summary>
-      <div class="tl-body">
-        Advised Amazon FBA sellers on product strategy, pricing, and store optimization. Analyzed sales and market trends, improved listings and operations, and implemented data-driven strategies to increase visibility, profitability, and overall business performance.
-      </div>
-    </details>
-  </div>
-</div>
-
-      </div>
-    </section>
-
-    <!-- DOCUMENTS -->
-    <section id="docs">
-      <div class="sectionTitle">
-        <h2>Documents</h2>
-      </div>
-
-      <div class="grid">
-        <div class="card col-12">
-          <div class="cardHeader">
-            <h3>Personal frameworks</h3>
-            <span class="chip"><span aria-hidden="true">📄</span><span>PDF</span></span>
-          </div>
-
-          <div class="docRow">
-            <button class="docBtn" type="button"
-              data-doc-title="DISC & Motivators"
-              data-doc-url="https://raw.githubusercontent.com/jantwonine/resume/main/Tonny%20Robins%20DISC%20%26%20Motivators.pdf">
-              <div>
-                <div style="font-weight:850">DISC & Motivators</div>
-                <small>Preview or download</small>
-              </div>
-              <div class="right">
-                <span class="chip"><span aria-hidden="true">👁️</span><span>View</span></span>
-                <span class="chip"><span aria-hidden="true">⬇️</span><span>Download</span></span>
-              </div>
-            </button>
-
-            <button class="docBtn" type="button"
-              data-doc-title="Principles You"
-              data-doc-url="https://raw.githubusercontent.com/jantwonine/resume/main/Ray%20Dalio%20Principles%20You.pdf">
-              <div>
-                <div style="font-weight:850">Principles You</div>
-                <small>Preview or download</small>
-              </div>
-              <div class="right">
-                <span class="chip"><span aria-hidden="true">👁️</span><span>View</span></span>
-                <span class="chip"><span aria-hidden="true">⬇️</span><span>Download</span></span>
-              </div>
-            </button>
-          </div>
-
-          <p class="muted" style="margin-top:10px">
-            If a browser blocks the preview, use the download button inside the modal.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="sectionTitle">
-        <h2>Contact</h2>
-      </div>
-
-      <div class="grid">
-        <div class="card col-8">
-          <div class="cardHeader">
-            <h3>Let’s connect</h3>
-            <span class="chip"><span aria-hidden="true">🤝</span><span>Open to roles</span></span>
-          </div>
-          <p>
-            Email is best. If you prefer, message me on LinkedIn with the role title and what you want solved
-            in the first 30 days.
-          </p>
-
-          <div class="ctaRow" style="margin-top:12px">
-
-<a class="btn"
-   href="https://mail.google.com/mail/?view=cm&fs=1&to=jantonignsreyes@gmail.com&su=Opportunity%20for%20Jantonign%20S.%20Reyes"
-   target="_blank"
-   rel="noreferrer">
-  <span aria-hidden="true">✉️</span><span>Email me</span>
-</a>
-
-
-
-            <a class="btn" href="https://www.linkedin.com/in/jantonignsreyes" target="_blank" rel="noreferrer">
-              <span aria-hidden="true">🔗</span><span>LinkedIn</span>
-            </a>
-            <button class="btn" type="button" id="copyAllBtn">
-              <span aria-hidden="true">📌</span><span>Copy contact card</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="card col-4">
-          <div class="cardHeader">
-            <h3>Details</h3>
-            <span class="chip"><span aria-hidden="true">📎</span><span>Quick</span></span>
-          </div>
-          <ul>
-            <li><b>Email:</b> jantonignsreyes@gmail.com</li>
-            <li><b>Phone:</b> +63 919-604-1925</li>
-            <li><b>Location:</b> Don Bosco, Parañaque City</li>
-            <li><b>Resume:</b> jantwonine.github.io/resume/</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="foot">
-        <div>
-          <div style="font-weight:850;color:var(--txt)">Jantonign S. Reyes</div>
-          <div class="muted">Data • Automation • Operations • Strategy</div>
-        </div>
-        <div class="muted">
-          <span id="year"></span> • Alrights Reserved
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- PDF MODAL -->
-  <dialog id="docModal" aria-labelledby="docTitle">
-    <div class="modalTop">
-      <strong id="docTitle">Document</strong>
-      <div style="display:flex; gap:8px; align-items:center">
-        <a class="btn" id="docDownload" href="#" target="_blank" rel="noreferrer">
-          <span aria-hidden="true">⬇️</span><span>Download</span>
-        </a>
-        <button class="btn ghost" id="docClose" type="button">
-          <span aria-hidden="true">✖</span><span>Close</span>
-        </button>
-      </div>
-    </div>
-    <div class="modalBody">
-      <object id="docObject" data="" type="application/pdf">
-        <div style="padding:16px">
-          <p class="muted">Your browser can’t display this PDF inline.</p>
-          <p><a id="docFallback" class="btn primary" href="#" target="_blank" rel="noreferrer">Open PDF</a></p>
-        </div>
-      </object>
-    </div>
-  </dialog>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <!-- Simple command palette search ( / ) -->
-  <dialog id="searchModal" aria-labelledby="searchTitle">
-    <div class="modalTop">
-      <strong id="searchTitle">Jump to section</strong>
-      <button class="btn ghost" id="searchClose" type="button">
-        <span aria-hidden="true">✖</span><span>Close</span>
-      </button>
-    </div>
-    <div style="padding:12px; border-bottom:1px solid var(--line)">
-      <label class="sr" for="searchInput">Search</label>
-      <input id="searchInput" type="text" placeholder="Type: about, skills, highlights, docs, contact"
-        style="width:100%;padding:12px 12px;border-radius:14px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-weight:750;outline:none" />
-      <div class="muted" style="margin-top:8px;font-size:13px">Press Enter to jump.</div>
-    </div>
-    <div style="padding:12px">
-      <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px">
-        <button class="btn" type="button" data-jump="#about">About</button>
-        <button class="btn" type="button" data-jump="#skills">Skills</button>
-        <button class="btn" type="button" data-jump="#highlights">Highlights</button>
-        <button class="btn" type="button" data-jump="#docs">Documents</button>
-        <button class="btn" type="button" data-jump="#contact">Contact</button>
-      </div>
-    </div>
-  </dialog>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
 
   <script>
-    // -------------------- CONFIG --------------------
-    const CONTACT = {
-      email: "jantonignsreyes@gmail.com",
-      phone: "+63 919-604-1925",
-      linkedin: "https://www.linkedin.com/in/jantonignsreyes",
-      location: "Don Bosco, Parañaque City",
-    };
-
-    // -------------------- THEME --------------------
-    const themeBtn = document.getElementById("themeBtn");
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
-
-    themeBtn.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme");
-      const next = current === "light" ? "" : "light";
-      if (next) document.documentElement.setAttribute("data-theme", next);
-      else document.documentElement.removeAttribute("data-theme");
-      localStorage.setItem("theme", next || "");
-      toast(next === "light" ? "Light theme on" : "Dark theme on");
-    });
-
-    // -------------------- TOAST --------------------
-    const toastEl = document.getElementById("toast");
-    let toastTimer = null;
-    function toast(msg){
-      toastEl.textContent = msg;
-      toastEl.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1800);
-    }
-
-    // -------------------- COPY HELPERS --------------------
-    async function copyText(value, label){
-      try{
-        await navigator.clipboard.writeText(value);
-        toast(label + " copied");
-      }catch(e){
-        // fallback prompt
-        window.prompt("Copy this:", value);
-      }
-    }
-    document.getElementById("copyEmailBtn").addEventListener("click", () => copyText(CONTACT.email, "Email"));
-    document.getElementById("copyPhoneBtn").addEventListener("click", () => copyText(CONTACT.phone, "Phone"));
-    document.getElementById("emailPill").addEventListener("click", () => copyText(CONTACT.email, "Email"));
-    document.getElementById("phonePill").addEventListener("click", () => copyText(CONTACT.phone, "Phone"));
-    document.getElementById("emailPill").addEventListener("keydown", (e) => { if(e.key==="Enter") copyText(CONTACT.email, "Email"); });
-    document.getElementById("phonePill").addEventListener("keydown", (e) => { if(e.key==="Enter") copyText(CONTACT.phone, "Phone"); });
-
-    document.getElementById("copyAllBtn").addEventListener("click", () => {
-      const card =
-`Jantonign S. Reyes
-Email: ${CONTACT.email}
-Phone: ${CONTACT.phone}
-LinkedIn: ${CONTACT.linkedin}
-Location: ${CONTACT.location}`;
-      copyText(card, "Contact card");
-    });
-
-    // -------------------- REVEAL ON SCROLL --------------------
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("reveal");
+    // -------------------- VANTA --------------------
+    const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!reduceMotion && window.VANTA && window.VANTA.NET) {
+      window.VANTA.NET({
+        el: "#vantaCover",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0x7c5cff,
+        backgroundColor: 0x070b14,
+        points: 11.0,
+        maxDistance: 22.0,
+        spacing: 18.0
       });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".card").forEach((c) => observer.observe(c));
-
-    // -------------------- DOC MODAL --------------------
-    const docModal = document.getElementById("docModal");
-    const docTitle = document.getElementById("docTitle");
-    const docObject = document.getElementById("docObject");
-    const docDownload = document.getElementById("docDownload");
-    const docFallback = document.getElementById("docFallback");
-    const docClose = document.getElementById("docClose");
-
-    function openDoc(title, url){
-      docTitle.textContent = title;
-      docObject.setAttribute("data", url);
-      docDownload.setAttribute("href", url);
-      docFallback.setAttribute("href", url);
-      docModal.showModal();
     }
 
-    document.querySelectorAll(".docBtn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const title = btn.getAttribute("data-doc-title");
-        const url = btn.getAttribute("data-doc-url");
-        openDoc(title, url);
-      });
-    });
+    // -------------------- TYPEWRITER DIALOGUE --------------------
+    const typeEl = document.getElementById("typeText");
+    const statusEl = document.getElementById("talkStatus");
+    const enterLink = document.getElementById("enterLink");
 
-    docClose.addEventListener("click", () => docModal.close());
-    docModal.addEventListener("click", (e) => {
-      const rect = docModal.getBoundingClientRect();
-      const inDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!inDialog) docModal.close();
-    });
-
-    // -------------------- SEARCH ( / ) --------------------
-    const searchModal = document.getElementById("searchModal");
-    const searchInput = document.getElementById("searchInput");
-    const searchClose = document.getElementById("searchClose");
-
-    const routes = [
-      { key:"about", id:"#about" },
-      { key:"skills", id:"#skills" },
-      { key:"highlights", id:"#highlights" },
-      { key:"docs", id:"#docs" },
-      { key:"documents", id:"#docs" },
-      { key:"contact", id:"#contact" },
-      { key:"top", id:"#top" },
+    // Edit these lines any time. These are written as "you talking to them".
+    const lines = [
+      "Hi. Thanks for dropping by. I’m Jantonign.",
+      "This site is my quick profile for applications.",
+      "If you want the fastest overview, check my highlights and experience timeline.",
+      "You can also download my resume PDF anytime from the button here.",
+      "When you’re ready, enter the site."
     ];
 
-    function jumpTo(hash){
-      const el = document.querySelector(hash);
-      if (!el) return;
-      el.scrollIntoView({ behavior:"smooth", block:"start" });
-      toast("Jumped to " + hash.replace("#",""));
-    }
+    let lineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let paused = false;
 
-    function openSearch(){
-      searchModal.showModal();
-      setTimeout(() => searchInput.focus(), 30);
-      searchInput.value = "";
-    }
-    function closeSearch(){ searchModal.close(); }
+    const TYPE_SPEED = 28;     // smaller = faster
+    const DELETE_SPEED = 18;
+    const HOLD_AFTER_TYPE = 900;
+    const HOLD_AFTER_DELETE = 250;
 
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "/" && !e.ctrlKey && !e.metaKey && !e.altKey) {
-        const tag = document.activeElement?.tagName?.toLowerCase();
-        if (tag === "input" || tag === "textarea") return;
-        e.preventDefault();
-        openSearch();
+    function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+    async function runTypewriter(){
+      // If reduced motion, just show the first line and stop.
+      if (reduceMotion){
+        typeEl.textContent = lines[0];
+        statusEl.textContent = "Ready";
+        return;
       }
-      if (e.key === "Escape") {
-        if (docModal.open) docModal.close();
-        if (searchModal.open) closeSearch();
-      }
-    });
 
-    searchClose.addEventListener("click", closeSearch);
-    searchModal.querySelectorAll("[data-jump]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        closeSearch();
-        jumpTo(btn.getAttribute("data-jump"));
-      });
-    });
-    searchInput.addEventListener("keydown", (e) => {
-      if (e.key !== "Enter") return;
-      const q = searchInput.value.trim().toLowerCase();
-      const match = routes.find(r => r.key === q) || routes.find(r => r.key.startsWith(q));
-      if (match){
-        closeSearch();
-        jumpTo(match.id);
-      } else {
-        toast("No match. Try: about, skills, highlights, docs, contact");
-      }
-    });
+      while (true){
+        if (paused){
+          await sleep(80);
+          continue;
+        }
 
-    // -------------------- YEAR --------------------
-    document.getElementById("year").textContent = new Date().getFullYear();
+        const current = lines[lineIndex];
 
-    // -------------------- BACKGROUND PARTICLES CANVAS --------------------
-    const canvas = document.getElementById("bgCanvas");
-    const ctx = canvas.getContext("2d", { alpha: true });
-
-    function sizeCanvas(){
-      const dpr = Math.max(1, window.devicePixelRatio || 1);
-      canvas.width = Math.floor(window.innerWidth * dpr);
-      canvas.height = Math.floor(window.innerHeight * dpr);
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    window.addEventListener("resize", sizeCanvas);
-    sizeCanvas();
-
-    const dots = [];
-    const DOTS = 70;
-
-    function rand(min,max){ return Math.random()*(max-min)+min; }
-    for (let i=0;i<DOTS;i++){
-      dots.push({
-        x: rand(0, window.innerWidth),
-        y: rand(0, window.innerHeight),
-        r: rand(1.2, 2.6),
-        vx: rand(-.25, .25),
-        vy: rand(-.22, .22),
-      });
-    }
-
-    function draw(){
-      ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
-
-      // lines
-      for (let i=0;i<dots.length;i++){
-        const a = dots[i];
-        a.x += a.vx; a.y += a.vy;
-
-        if (a.x < -10) a.x = window.innerWidth + 10;
-        if (a.x > window.innerWidth + 10) a.x = -10;
-        if (a.y < -10) a.y = window.innerHeight + 10;
-        if (a.y > window.innerHeight + 10) a.y = -10;
-
-        for (let j=i+1;j<dots.length;j++){
-          const b = dots[j];
-          const dx = a.x - b.x, dy = a.y - b.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 140){
-            const alpha = (1 - dist/140) * 0.20;
-            ctx.strokeStyle = `rgba(124,92,255,${alpha})`;
-            ctx.beginPath();
-            ctx.moveTo(a.x, a.y);
-            ctx.lineTo(b.x, b.y);
-            ctx.stroke();
+        if (!deleting){
+          // typing
+          statusEl.textContent = "Talking…";
+          typeEl.textContent = current.slice(0, charIndex + 1);
+          charIndex++;
+          if (charIndex === current.length){
+            statusEl.textContent = "…";
+            await sleep(HOLD_AFTER_TYPE);
+            deleting = true;
+          } else {
+            await sleep(TYPE_SPEED);
+          }
+        } else {
+          // deleting
+          statusEl.textContent = "Thinking…";
+          typeEl.textContent = current.slice(0, Math.max(0, charIndex - 1));
+          charIndex--;
+          if (charIndex <= 0){
+            await sleep(HOLD_AFTER_DELETE);
+            deleting = false;
+            lineIndex++;
+            if (lineIndex >= lines.length){
+              // End: keep the last line visible instead of looping.
+              lineIndex = lines.length - 1;
+              typeEl.textContent = lines[lineIndex];
+              statusEl.textContent = "Ready";
+              return;
+            }
+          } else {
+            await sleep(DELETE_SPEED);
           }
         }
       }
-
-      // dots
-      for (const d of dots){
-        ctx.fillStyle = "rgba(51,214,255,.20)";
-        ctx.beginPath();
-        ctx.arc(d.x, d.y, d.r, 0, Math.PI*2);
-        ctx.fill();
-      }
-
-      requestAnimationFrame(draw);
     }
-    draw();
+
+    runTypewriter();
+
+    // Controls:
+    // Enter = go to main page
+    // Esc = go to main page
+    // Space = pause/resume typing
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === "Escape"){
+        window.location.href = enterLink.getAttribute("href");
+      }
+      if (e.key === " "){
+        e.preventDefault();
+        paused = !paused;
+        statusEl.textContent = paused ? "Paused" : "Talking…";
+      }
+    });
+
+    // Clicking the dialogue toggles pause (optional)
+    document.querySelector(".dialogue")?.addEventListener("click", () => {
+      if (reduceMotion) return;
+      paused = !paused;
+      statusEl.textContent = paused ? "Paused" : "Talking…";
+    });
   </script>
 </body>
 </html>
