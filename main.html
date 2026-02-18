@@ -64,7 +64,7 @@
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
       opacity:.25;
       mix-blend-mode:overlay;
-      animation: drift 18s linear infinite;
+      animation: drift 14s linear infinite;
     }
     @keyframes drift{
       0%{transform:translate3d(0,0,0)}
@@ -543,13 +543,366 @@
   color:var(--muted);
   line-height:1.65;
 }
-.tl-body p (margin:0){}
+.tl-body p{margin:0}
 
 .timeline details[open]{
   border-color: rgba(51,214,255,.35);
 }
 
-  </style>
+/* -------- Portfolio -------- */
+.catGrid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap:10px;
+  margin-top:10px;
+}
+@media (max-width: 920px){
+  .catGrid{grid-template-columns:1fr;}
+}
+.catItem{
+  border:1px solid var(--line);
+  background: var(--card2);
+  border-radius: 16px;
+  padding:12px;
+}
+.catItem strong{display:block; font-size:13px; margin-bottom:6px}
+.catItem p{margin:0; color:var(--muted); font-size:13px; line-height:1.55}
+
+.filterRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
+.filterRow .btn{
+  padding:8px 10px;
+  font-size:13px;
+}
+
+/* Flip project cards */
+.pCard{
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, var(--card), transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  position:relative;
+  height: 260px;              /* ensures the inner faces have a real height */
+  cursor:pointer;
+  outline:none;
+}
+@media (max-width: 920px){
+  .pCard{ height: 300px; }
+}
+
+.pInner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transform-style: preserve-3d;
+  transition: transform .6s cubic-bezier(.2,.8,.2,1);
+}
+
+.pCard:hover .pInner,
+.pCard:focus-within .pInner{
+  transform: rotateY(180deg);
+}
+
+.pFace{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+.pFront{
+  padding:12px;
+}
+
+.pThumb{
+  width:100%;
+  height: 170px;
+  border-radius: 16px;
+  border:1px solid var(--line);
+  background: var(--card2);
+  object-fit: cover;
+}
+
+.pName{
+  margin:12px 2px 0;
+  font-weight:900;
+  letter-spacing:.2px;
+  font-size:15px;
+  line-height:1.2;
+}
+
+.pMeta{
+  margin:6px 2px 0;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:650;
+}
+
+/* Back side: keep everything aligned and avoid scrollbars */
+.pBack{
+  transform:rotateY(180deg);
+  padding:14px;
+  gap:10px;
+  overflow:hidden;
+  justify-content:flex-start;
+}
+
+.pBack .kv{
+  display:grid;
+  width:100%;
+  grid-template-columns: 108px 1fr;
+  gap:6px 12px;
+  align-content:start;
+  align-items:start;
+}
+
+@media (max-width: 420px){
+  .pBack .kv{ grid-template-columns: 92px 1fr; gap:6px 10px; }
+}
+
+.pBack .k{
+  color:var(--muted);
+  font-weight:750;
+  font-size:11px;
+  letter-spacing:.2px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  align-self:start;
+}
+
+.pBack .v{
+  color:var(--txt);
+  font-weight:650;
+  font-size:11.5px;
+  line-height:1.35;
+  white-space:normal;
+  word-break:break-word;
+  overflow:hidden;
+
+  /* consistent multi-line clamp (no scroll, no ellipsis weirdness) */
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:3;
+}
+
+.pBack .tags{ margin-top:2px; }
+
+/* Modal layout (2 columns on desktop) */
+.portfolioModalBody{padding:12px}
+.portfolioSplit{
+  display:grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap:12px;
+}
+@media (max-width: 920px){
+  .portfolioSplit{grid-template-columns:1fr;}
+}
+
+.portfolioPane{
+  border:1px solid var(--line);
+  background: linear-gradient(180deg, var(--card), transparent);
+  border-radius: 18px;
+  overflow:hidden;
+  min-height: 340px;
+}
+
+.paneHeader{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 12px;
+  border-bottom:1px solid var(--line);
+}
+.paneTitle{font-weight:850; font-size:13px}
+
+/* Vertical carousel */
+.vCarWrap{ padding:12px; }
+.vCarViewport{
+  width:100%;
+  height: min(70vh, 760px);
+  border-radius: 16px;
+  border:1px solid var(--line);
+  background: var(--card2);
+  overflow:hidden;
+}
+.vCarTrack{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:10px;
+  will-change: transform;
+}
+.vCarItem{
+  width:100%;
+  height: 420px;
+  border-radius: 16px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.08);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+@media (max-width: 920px){
+  .vCarItem{ height: 320px; }
+}
+.vCarItem img{
+  width:100%;
+  height:100%;
+  object-fit: contain;
+  display:block;
+}
+
+/* Write-up pane */
+.writeupWrap{ padding:12px; }
+.writeupBody{
+  height: min(70vh, 760px);
+  overflow:auto;
+  border-radius: 16px;
+  border:1px solid var(--line);
+  background: var(--card2);
+  padding:12px;
+}
+.writeupBody h3{
+  margin: 0 0 8px;
+  font-size: 14px;
+  letter-spacing: .2px;
+}
+.writeupBody h4{
+  margin: 14px 0 8px;
+  font-size: 13px;
+  letter-spacing: .2px;
+}
+.writeupBody p{
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.writeupBody ul{
+  margin: 8px 0 0;
+  padding-left: 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.writeupBody li{ margin: 6px 0; }
+
+/* ---------- Project carousel (horizontal looping) ---------- */
+.pCarouselWrap{
+  position:relative;
+  border-radius: var(--radius);
+}
+.pCarousel{
+  overflow:hidden;
+  border-radius: var(--radius);
+}
+.pTrack{
+  display:flex;
+  gap:12px;
+  will-change: transform;
+  padding: 6px 2px 2px;
+}
+
+/* Grid mode (used for filtered views). No auto-loop; cards stay fixed and wrap nicely. */
+.pTrack.gridMode{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap:12px;
+  transform:none !important;
+}
+.pTrack.gridMode .pSlide{
+  flex: unset;
+  width:auto;
+}
+.pSlide{
+  flex: 0 0 320px;
+}
+@media (max-width: 920px){
+  .pSlide{flex-basis: 86vw;}
+}
+
+.pCarBtn{
+  position:absolute;
+  top:50%;
+  transform: translateY(-50%);
+  width:40px;
+  height:40px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(15,26,49,.80);
+  color: var(--txt);
+  font-size: 22px;
+  cursor:pointer;
+  z-index:5;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+[data-theme="light"] .pCarBtn{ background: rgba(255,255,255,.85); }
+#pCarPrev{ left:-6px; }
+#pCarNext{ right:-6px; }
+
+/* ---------- Modal vertical looping carousel (portrait-friendly) ---------- */
+.vCarWrap{ padding:12px; }
+.vCarViewport{
+  width:100%;
+  height: min(62vh, 720px);
+  border-radius: 16px;
+  border:1px solid var(--line);
+  background: var(--card2);
+  overflow:hidden;
+}
+.vCarTrack{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:10px;
+  will-change: transform;
+}
+.vCarItem{
+  width:100%;
+  height: 420px;
+  border-radius: 16px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.08);
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+@media (max-width: 920px){
+  .vCarItem{ height: 320px; }
+}
+.vCarItem img{
+  width:100%;
+  height:100%;
+  object-fit: contain; /* uniform size */
+  display:block;
+}
+
+/* Active filter state */
+.filterRow .btn.active{
+  border-color: transparent;
+  background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(51,214,255,.85));
+  color:#081022;
+  box-shadow: 0 10px 24px rgba(124,92,255,.25);
+}
+
+[data-theme="light"] .filterRow .btn.active{
+  color:#ffffff;
+}
+
+  /* When the project modal is open, force cards to show the front */
+html.modalOpen .pCard:hover .pInner,
+html.modalOpen .pCard:focus-within .pInner{
+  transform:none;
+}
+
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38/build/pdf.min.js"></script>
 </head>
 
 <body>
@@ -568,6 +921,7 @@
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#highlights">Highlights</a>
+          <a href="#portfolio">Portfolio</a>
           <a href="#docs">Documents</a>
           <a href="#contact">Contact</a>
           <button class="btn ghost" id="themeBtn" type="button" title="Toggle theme">
@@ -578,7 +932,7 @@
    download
    target="_blank"
    rel="noreferrer">
-  <span aria-hidden="true">⬇️</span><span>Resume (PDF)</span>
+  <span aria-hidden="true">Download</span><span>Resume</span>
 </a>
         </nav>
       </div>
@@ -1005,6 +1359,78 @@
       </div>
     </section>
 
+    <!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="sectionTitle">
+    <h2>Portfolio</h2>
+    <p>Click a project to view the image carousel and the PDF (starts on page 2).</p>
+  </div>
+
+  <!-- Categories -->
+  <div class="card col-12" style="margin-bottom:12px">
+  <div class="cardHeader">
+    <h3>Filter</h3>
+    <span class="chip"><span aria-hidden="true">🗂️</span><span id="projCount">0 projects</span></span>
+  </div>
+
+  <div class="filterRow" id="filterRow" aria-label="Portfolio filters"></div>
+</div>
+
+  <!-- Projects -->
+  <div class="pCarouselWrap" aria-label="Portfolio carousel">
+  <button class="pCarBtn" type="button" id="pCarPrev" aria-label="Previous">‹</button>
+
+  <div class="pCarousel" id="pCarousel" tabindex="0" aria-label="Project carousel track">
+    <div class="pTrack" id="pTrack"></div>
+  </div>
+
+  <button class="pCarBtn" type="button" id="pCarNext" aria-label="Next">›</button>
+</div>
+
+</section>
+
+<!-- PORTFOLIO MODAL -->
+<dialog id="portfolioModal" aria-labelledby="portfolioTitle">
+  <div class="modalTop">
+    <strong id="portfolioTitle">Project</strong>
+    <div style="display:flex; gap:8px; align-items:center">
+      <button class="btn ghost" id="portfolioClose" type="button">
+        <span aria-hidden="true">✖</span><span>Close</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="portfolioModalBody">
+    <div class="portfolioSplit">
+      <!-- LEFT: Screens -->
+      <div class="portfolioPane">
+        <div class="paneHeader">
+          <div class="paneTitle">Screens</div>
+          <div class="muted" id="carouselCount">0 images</div>
+        </div>
+
+        <div class="vCarWrap" id="vCarWrap">
+          <div class="vCarViewport" id="vCarViewport">
+            <div class="vCarTrack" id="vCarTrack"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Write-up -->
+      <div class="portfolioPane">
+        <div class="paneHeader">
+          <div class="paneTitle">Project write-up</div>
+          <div class="muted" id="writeupMeta">Overview</div>
+        </div>
+
+        <div class="writeupWrap">
+          <div id="writeupBody" class="writeupBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
+
     <!-- DOCUMENTS -->
     <section id="docs">
       <div class="sectionTitle">
@@ -1132,12 +1558,14 @@
       </div>
     </div>
     <div class="modalBody">
-      <object id="docObject" data="" type="application/pdf">
-        <div style="padding:16px">
-          <p class="muted">Your browser can’t display this PDF inline.</p>
-          <p><a id="docFallback" class="btn primary" href="#" target="_blank" rel="noreferrer">Open PDF</a></p>
-        </div>
-      </object>
+      <iframe
+        id="docFrame"
+        title="PDF preview"
+        style="width:100%; height:70vh; border:0; border-radius:14px; background:var(--card2)"
+        loading="lazy"></iframe>
+      <div style="padding:12px">
+        <p class="muted">If the preview doesn’t load, use Download.</p>
+      </div>
     </div>
   </dialog>
 
@@ -1169,6 +1597,1232 @@
   </dialog>
 
   <script>
+
+  // -------------------- PORTFOLIO DATA --------------------
+const CATEGORIES = [
+  {
+    name: "Compliance and Incident Workflows",
+    desc: "Complaints and incident reporting with alerts and logs."
+  },
+  {
+    name: "Feedback Ops",
+    desc: "NPS, surveys, feedback collection and routing."
+  },
+  {
+    name: "Finance and Receivables Automation",
+    desc: "Invoices, debtors, end of month tracking, follow ups."
+  },
+  {
+    name: "Internal Tools and Lightweight CRM",
+    desc: "Simple internal admin tools for finding, updating, deleting, generating files."
+  },
+  {
+    name: "Knowledge and Workspace Systems",
+    desc: "Organizational structure for information and projects."
+  },
+  {
+    name: "Reporting and Dashboards",
+    desc: "Anything that shows results in a clean, clickable view."
+  },
+  {
+    name: "Web Forms and Client-Facing Pages",
+    desc: "Forms, portals, branded pages users interact with."
+  }
+];
+
+// PROJECTS HERE!
+const PROJECTS = [
+  {
+    id: "complaints-email-automation",
+    name: "Complaints Email Automation",
+    category: "Compliance and Incident Workflows",
+    problem: "Complaint submissions required manual monitoring and email drafting, creating compliance risk.",
+    built: "Implemented trigger-based automation that generates structured branded emails instantly and logs all notifications.",
+    tools: ["Google Forms", "Google Sheets", "Google Apps Script", "Gmail API"],
+    output: "Instant complaint alert email, structured log sheet",
+    thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Complaints%20Email%20Automation/complaint%20email%20notif.png",
+    images: [
+      "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Complaints%20Email%20Automation/complaint%20email%20notif.png"
+    ],
+    writeup: `
+  <h3>Complaints Email Automation</h3>
+
+  <h4>Short backstory</h4>
+  <p>At Total Health Choice, complaints were submitted through a Google Form and stored in a spreadsheet.</p>
+  <p>The issue was not collecting the data. The issue was what happened next.</p>
+  <p>Managers still had to manually check the sheet, notify the right people, copy details into emails, and track whether the alert was even sent.</p>
+  <p>That gap between form submitted and action taken was the risk. So I built a system that removes that gap completely.</p>
+
+  <h4>The problem</h4>
+  <p>When a complaint is lodged in healthcare, timing matters. Before automation:</p>
+  <ul>
+    <li>Staff had to manually monitor the responses sheet</li>
+    <li>Emails were drafted and formatted manually</li>
+    <li>Important details could be missed</li>
+    <li>There was no structured log of whether notifications were actually sent</li>
+  </ul>
+  <p>If someone forgot to check the sheet, a complaint could sit unnoticed for hours or even a full day. In a compliance-sensitive environment, that’s not ideal.</p>
+
+  <h4>The system I built</h4>
+  <p>Step by step:</p>
+  <ul>
+    <li>A staff member submits the complaint form</li>
+    <li>An installable trigger activates immediately</li>
+    <li>The system pulls the exact row of data from the spreadsheet</li>
+    <li>It generates a branded, structured, professionally formatted email</li>
+    <li>The right people receive it instantly</li>
+    <li>The system logs the event automatically in an Email Log sheet</li>
+    <li>If anything fails, it records the error for traceability</li>
+  </ul>
+  <p>No one has to open the spreadsheet. No one has to draft an email. No one has to remember who to CC.</p>
+  <p>The email is styled and organized, highlighting clinician involved, date of complaint, verbatim excerpt, key details in a clean table format, and suggested next steps.</p>
+  <p>It reads like an internal report, not a rushed notification.</p>
+
+  <h4>The tools used</h4>
+  <ul>
+    <li>Google Forms for intake</li>
+    <li>Google Sheets as the database</li>
+    <li>Google Apps Script for automation logic</li>
+    <li>Gmail API for sending branded HTML emails</li>
+    <li>Built-in logging inside Sheets for traceability</li>
+  </ul>
+  <p>Everything runs inside Google Workspace. No third-party platform required.</p>
+
+  <h4>The measurable result</h4>
+  <p>Before:</p>
+  <ul>
+    <li>5 to 10 minutes per complaint to check, draft, format, and send</li>
+    <li>Risk of delay if someone forgot</li>
+    <li>No structured audit trail</li>
+  </ul>
+
+  <p>After:</p>
+  <ul>
+    <li>0 minutes manual work</li>
+    <li>Email sent in under 5 seconds</li>
+    <li>100 percent consistency in formatting</li>
+    <li>Automatic timestamped logging</li>
+    <li>Immediate managerial visibility</li>
+  </ul>
+
+  <p>If the business handles 20 complaints per month, that’s roughly 2 to 3 hours saved monthly. More importantly, it removes compliance risk.</p>
+  <p>In healthcare operations, speed and documentation matter more than just time saved.</p>
+
+  <h4>What this type of automation can also do</h4>
+  <p>The same structure can be adapted for:</p>
+  <ul>
+    <li>Incident reports</li>
+    <li>Client feedback alerts</li>
+    <li>NPS survey notifications</li>
+    <li>HR escalations</li>
+    <li>Invoice follow-ups</li>
+    <li>Compliance reminders</li>
+    <li>Dashboard alerts</li>
+    <li>Internal approval workflows</li>
+  </ul>
+  <p>Anywhere there is: form submission → spreadsheet → email → action.</p>
+
+  <h4>Why this matters</h4>
+  <ul>
+    <li>Closes operational gaps</li>
+    <li>Reduces human dependency</li>
+    <li>Improves response time</li>
+    <li>Strengthens accountability</li>
+    <li>Creates traceable workflows</li>
+  </ul>
+  <p>In growing teams, systems like this remove friction and prevent things from slipping through. That’s where operations become proactive instead of reactive.</p>
+`
+},
+{
+  id: "nps-survey-automation-system",
+  name: "NPS Survey Automation System",
+  category: "Feedback Ops",
+  problem: "Daily NPS survey sending and response matching required manual exports, uploads, and reconciliation.",
+  built: "Created an automated NPS pipeline that handles uploads, survey triggers, SMS matching, follow-up tracking, and eligibility logic.",
+  tools: ["Google Sheets", "Google Apps Script", "SurveyMonkey", "TextMagic", "Zapier"],
+  output: "Automated NPS masterfile, follow-up list, executive report",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/NPS%20Survey%20Automation%20System/Call%20FU.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/NPS%20Survey%20Automation%20System/Call%20FU-email.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/NPS%20Survey%20Automation%20System/Call%20FU.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/NPS%20Survey%20Automation%20System/NPS%20Automation-email.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/NPS%20Survey%20Automation%20System/NPS.png"
+  ],
+  writeup: `
+    <h3>NPS Survey Automation System</h3>
+
+    <h4>Quick backstory</h4>
+    <p>This started because sending NPS surveys became a daily operational burden. Appointments were exported from one system, patient details lived in another sheet, surveys were sent via SurveyMonkey (email) and TextMagic (SMS), and responses came back in separate exports.</p>
+    <p>Every day, someone had to download files, clean data, upload lists, cross-check responses, update tracking sheets, and prepare call follow-up lists. It worked, but it was repetitive, easy to miss, and mentally draining.</p>
+    <p>So I built a structured system inside the client’s existing Google Workspace workflow and automated the daily process end to end.</p>
+
+    <h4>The problem</h4>
+    <p>Daily workflow included:</p>
+    <ul>
+      <li>Export patient and appointment CSV files</li>
+      <li>Filter eligible patients</li>
+      <li>Upload contacts to SurveyMonkey and TextMagic</li>
+      <li>Track email vs SMS sends</li>
+      <li>Export SMS results and match names back to the master sheet</li>
+      <li>Update NPS scores and prepare follow-up call lists</li>
+    </ul>
+    <p>That can add up to 1.5 to 3 hours per day, plus human error risk like duplicate sends, missed SMS responses, incorrect classification, and inconsistent follow-up tracking.</p>
+
+    <h4>The system I built</h4>
+    <p>I turned NPS into a guided workflow inside Google Sheets with controlled automation behind it.</p>
+
+    <p><b>Step 1: Controlled CSV upload via sidebar</b></p>
+    <ul>
+      <li>Drag and drop CSV uploads into the sheet</li>
+      <li>Filename validation before processing</li>
+      <li>Progress feedback during uploads</li>
+      <li>Incorrect file types blocked</li>
+    </ul>
+
+    <p><b>Step 2: Automated survey send pipeline</b></p>
+    <ul>
+      <li>Processes new patient and appointment files</li>
+      <li>Identifies eligible patients and flags email vs SMS availability</li>
+      <li>Updates the Survey Masterfile and logs send dates</li>
+      <li>Computes Promoter, Passive, Detractor rules</li>
+    </ul>
+    <p>Survey delivery used SurveyMonkey, TextMagic, and Zapier, with an architecture that can be done purely in Google Workspace if needed.</p>
+
+    <p><b>Step 3: Automated SMS response sync</b></p>
+    <ul>
+      <li>Imports only valid survey rows and rejects incomplete responses</li>
+      <li>Matches patients using layered matching logic</li>
+      <li>Marks Responded, logs response date, updates score, stores feedback, stamps channel as SMS</li>
+    </ul>
+
+    <p><b>Step 4: Call follow-up sync and archive</b></p>
+    <ul>
+      <li>Checkbox-driven sync pushes scores and comments back to the masterfile</li>
+      <li>Marks channel as Call, timestamps the update, archives the row, removes it from active follow-ups</li>
+      <li>Auto-removes patients who already responded via survey</li>
+    </ul>
+
+    <p><b>Step 5: Automatic 6-month eligibility generator</b></p>
+    <ul>
+      <li>Cross-checks billing records and applies service rules</li>
+      <li>Builds a structured eligibility list automatically</li>
+      <li>Sends success or error notifications</li>
+    </ul>
+
+    <p><b>Step 6: One-click active patient report export</b></p>
+    <ul>
+      <li>Generates a new workbook report</li>
+      <li>Classifies patients as Active, Inactive, or New</li>
+      <li>Breaks down counts by practitioner</li>
+      <li>Formats summary sheets and sends notification emails</li>
+    </ul>
+
+    <h4>The tools used</h4>
+    <ul>
+      <li>Google Apps Script</li>
+      <li>Google Sheets automation</li>
+      <li>Custom HTML and CSS sidebar UI</li>
+      <li>SurveyMonkey</li>
+      <li>TextMagic</li>
+      <li>Zapier</li>
+    </ul>
+
+    <h4>The measurable result</h4>
+    <p><b>Before:</b> 1.5 to 3 hours per day of survey admin and manual reconciliation.</p>
+    <p><b>After:</b> 10 to 20 minutes review time per day.</p>
+    <ul>
+      <li>1 to 2.5 hours saved daily</li>
+      <li>30 to 50+ hours saved monthly</li>
+      <li>Reduced manual effort by roughly 70 to 85 percent</li>
+      <li>Controlled uploads, validation rules, audit trail logs, and error notifications</li>
+    </ul>
+
+    <h4>Why this matters beyond NPS</h4>
+    <p>This same pattern works for onboarding surveys, payment reminders, renewal notices, referral follow-ups, and recurring workflows where files, messaging, and tracking need to stay consistent inside Google Workspace.</p>
+  `
+},
+{
+  id: "aged-debtor-report-automation",
+  name: "Aged Debtor Report Automation",
+  category: "Finance and Receivables Automation",
+  problem: "Daily debtor updates required repetitive CSV imports, balance reconciliation, and third-party syncing with high risk of manual errors.",
+  built: "Rebuilt the entire aged debtor workflow inside Google Workspace with controlled uploads, automated recalculations, smart syncing, audit logging, and auto-generated aging summaries.",
+  tools: ["Google Sheets", "Google Apps Script", "Google Drive API", "Gmail API", "Custom HTML/CSS Sidebar"],
+  output: "Automated aged debtor dashboard with third-party sync, write-off export, and audit tracking",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Aged%20Debtor%20Report%20Automation/Aged%20Debtors.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Aged%20Debtor%20Report%20Automation/Aged%20Debtors%20Summary.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Aged%20Debtor%20Report%20Automation/Aged%20Debtors.png"
+  ],
+  writeup: `
+<h3>Aged Debtor Report Automation</h3>
+
+<h4>Quick Backstory</h4>
+This began as a daily operational bottleneck. Every day a debts.csv file had to be downloaded, imported, cleaned, reconciled, and synced to external portals. The process worked, but it was repetitive and highly dependent on manual attention.
+
+<h4>The Problem</h4>
+Each daily cycle involved:
+<ul>
+<li>Manual CSV upload and reformatting</li>
+<li>Recalculating balances</li>
+<li>Preserving payment remarks</li>
+<li>Updating third-party sheets (Trilogy and Capital Guardians)</li>
+<li>Generating aging summaries</li>
+</ul>
+For 80–150 invoices per run, this took 45–90 minutes per day and carried risk of overwritten notes, duplicate rows, and missed syncs.
+
+<h4>The System I Built</h4>
+I converted the spreadsheet into a guided workflow:
+<ul>
+<li>Controlled CSV upload with batch ID and audit log</li>
+<li>One-click daily update with smart parsing and validation</li>
+<li>Automatic balance recalculation and aging categorization</li>
+<li>Smart third-party syncing without duplication</li>
+<li>Auto-generated Aged Debtors Summary dashboard</li>
+<li>One-click write-off export</li>
+<li>Built-in history tracking and Manila timezone logging</li>
+</ul>
+
+<h4>The Result</h4>
+Manual processing reduced from 45–90 minutes to 5–15 minutes per cycle.<br>
+Estimated 15–20 hours saved per month.<br>
+Zero duplicate rows. Controlled syncing. Full audit visibility.
+
+<h4>Why It Matters</h4>
+This structure can be reused for billing imports, portal uploads, reconciliation workflows, subscription tracking, and compliance-heavy finance tasks — all inside Google Workspace without external tools.
+`
+},
+{
+  id: "end-of-month-automation-system",
+  name: "End-of-Month Automation System",
+  category: "Finance and Receivables Automation",
+  problem: "Month-end invoicing required hours of manual attachment handling, folder management, validation, and archiving.",
+  built: "Created a guided EOM workflow with auto sheet creation, structured folder management, invoice emailing via Gmail API, and automated archiving with audit tracking.",
+  tools: ["Google Sheets", "Google Apps Script", "Google Drive API", "Gmail API", "Custom HTML/CSS Sidebar"],
+  output: "Automated monthly invoice sending system with structured archiving and audit logs",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/End-of-Month%20(EOM)%20Automation%20System/EOM%20Tools.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/End-of-Month%20(EOM)%20Automation%20System/EOM%20Tools.png"
+  ],
+  writeup: `
+<h3>End-of-Month (EOM) Automation System</h3>
+
+<h4>Quick Backstory</h4>
+Month-end invoicing was consuming 4–6 hours of repetitive admin work. Invoices lived in Drive, lists lived in Sheets, and emails were still sent manually one by one. It worked, but it was fragile.
+
+<h4>The Problem</h4>
+Each month involved:
+<ul>
+<li>Creating new report sheets manually</li>
+<li>Cross-checking debtors across spreadsheets</li>
+<li>Managing client Drive folders</li>
+<li>Drafting emails and attaching PDFs individually</li>
+<li>Archiving files manually</li>
+</ul>
+For 40–80 clients, this introduced risk of wrong attachments, missed sends, and duplicate monthly sheets.
+
+<h4>The System I Built</h4>
+I rebuilt EOM into a structured flow:
+<ul>
+<li>One-click creation of the monthly “As Of” sheet</li>
+<li>Automatic debtor list generation</li>
+<li>Drive-integrated sidebar for folder management</li>
+<li>Multi-file upload per client directly inside Sheets</li>
+<li>Checkbox-triggered invoice sending via Gmail API</li>
+<li>Automatic file archiving and timestamp logging</li>
+</ul>
+
+<h4>The Result</h4>
+Processing time reduced from 4–6 hours to 30–60 minutes.<br>
+70–85% reduction in manual effort.<br>
+Zero duplicate sheets. Controlled email formatting. Structured archive history.
+
+<h4>Why It Matters</h4>
+The same structure applies to renewal notices, payment reminders, bulk but controlled email workflows, contract expiry alerts, and recurring reporting systems — all within Google Workspace.
+`
+},
+{
+  id: "simple-data-input-crm-system",
+  name: "Simple Data Input CRM System",
+  category: "Internal tools and lightweight CRM",
+  problem: "Managing records across multiple tabs required manual searching, copying, and formatting, increasing mistakes and slowing updates.",
+  built: "Created a single-sheet DATA INPUT interface connected to multiple database tabs with automated search, load, update/create, delete, and consistent formatting for notes and multi-field entries.",
+  tools: ["Google Sheets", "Google Apps Script"],
+  output: "Lightweight CRM-style data input system for searching, updating, and maintaining records across multiple tabs",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Simple%20Data%20Input%20CRM%20System/datainput.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Simple%20Data%20Input%20CRM%20System/datainput.png"
+  ],
+  writeup: `
+<h3>Simple Data Input CRM System</h3>
+
+<h4>Quick Backstory</h4>
+The team needed a faster way to manage records without jumping across multiple tabs, copy-pasting fields, and reformatting text every time. I turned a Google Sheet into a lightweight mini CRM where staff can search, edit, and submit records in one place.
+
+<h4>The Problem</h4>
+This becomes necessary when records are spread across multiple tabs or stages (for example: Active, Special Case, Closed), updates happen often, and formatting needs to stay consistent for reporting. Manual copy-paste increases mistakes and slows the team down.
+
+<h4>The System I Built</h4>
+A single “DATA INPUT” sheet that works like a form and connects to multiple database tabs:
+<ul>
+  <li>Search by name and check across tabs</li>
+  <li>Load the matching record into an input area for editing</li>
+  <li>Auto-format inputs so reporting stays consistent</li>
+  <li>Combine multi-cell entries (example: tags/diagnoses) into a clean summary field</li>
+  <li>Store multi-line notes in a consistent list-style format</li>
+  <li>Submit updates to the correct tab (update if found, create if not)</li>
+  <li>Quick actions: clear inputs, delete a record by name across tabs (with prompts)</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+Typical recurring updates:
+<ul>
+  <li>Before: ~3 to 6 minutes per record (search, copy, format, double-check)</li>
+  <li>After: ~30 to 60 seconds (search, edit, submit)</li>
+</ul>
+Also reduces common issues: fewer duplicates, more consistent formatting, and lower chance of updating the wrong tab or row.
+
+<h4>Where This Pattern Helps</h4>
+Sales pipeline stages, onboarding trackers, follow-up lists, issue registers, internal request logs, and any simple CRM-style ops tracker built on clean sheet structures.
+`
+},
+{
+  id: "hr-tool-employee-sheets-creator",
+  name: "HR Tool – Employee Sheets Creator",
+  category: "Internal tools and lightweight CRM",
+  problem: "Creating and managing employee workbook templates was repetitive and prone to duplication, naming, and placement errors.",
+  built: "Built a checkbox-triggered template generator that reads each employee workbook link, copies the correct template sheet, renames it consistently, places it in the right position, and skips creation if it already exists.",
+  tools: ["Google Sheets", "Google Drive", "Google Apps Script"],
+  output: "Automated employee workbook structure creation using a centralized control sheet",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/HR%20Tool%20%E2%80%93%20Employee%20Sheets%20Creator/worksheet%20creator.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/HR%20Tool%20%E2%80%93%20Employee%20Sheets%20Creator/worksheet%20creator.png"
+  ],
+  writeup: `
+<h3>HR Tool – Employee Sheets Creator</h3>
+
+<h4>Quick Backstory</h4>
+As the team grew, employee workbooks kept expanding. Whenever a new section was needed, HR had to manually open a template, copy it into the employee file, rename it correctly, and check it wasn’t already there. It was repetitive, and repetition is where mistakes happen.
+
+<h4>The Problem</h4>
+This becomes necessary when you manage multiple employee workbooks, new sheets get added throughout the year, and consistency matters for reporting, reviews, or audits. Manual template handling leads to wrong versions, duplicates, inconsistent naming, and messy workbooks over time.
+
+<h4>The System I Built</h4>
+A centralized control sheet that triggers worksheet creation:
+<ul>
+  <li>HR pastes or references the employee workbook link in a master tracker</li>
+  <li>When a new document/section is needed, HR ticks a checkbox</li>
+  <li>The system then automatically:</li>
+  <ul>
+    <li>Reads the workbook link and extracts the Spreadsheet ID</li>
+    <li>Copies the correct template from a central source</li>
+    <li>Renames it consistently</li>
+    <li>Moves it into the proper position</li>
+    <li>Skips creation if it already exists</li>
+  </ul>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Before: ~5 to 10 minutes per workbook update</li>
+  <li>After: ~10 to 30 seconds of clicking and review</li>
+  <li>Estimated 80 to 90% reduction in admin time</li>
+</ul>
+Also improves consistency across employee files and makes reporting and audits easier.
+
+<h4>Where This Pattern Helps</h4>
+Auto-generating dashboards, monthly reporting tabs, compliance checklists, performance tracking sheets, and other standardized internal workbook structures.
+`
+},
+{
+  id: "executive-operating-system-notion-para",
+  name: "Executive Operating System (Notion PARA)",
+  category: "Knowledge and workspace systems",
+  problem: "Projects, responsibilities, and resources were scattered across tools, creating friction in decision-making and daily execution.",
+  built: "Implemented a PARA-based Notion workspace with linked databases, a central command dashboard, structured areas, organized resources, and clean archive logic so work stays visible and retrievable.",
+  tools: ["Notion", "Relational Databases", "Structured Dashboards"],
+  output: "Centralized executive dashboard and structured Notion workspace system",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/CP_1.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/CP_1.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/CP_2.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/P_1.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/A_1.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/R_1.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Executive%20Operating%20System%20Build/Ar_1.png"
+  ],
+  writeup: `
+<h3>Executive Operating System (Notion PARA)</h3>
+
+<h4>Quick Backstory</h4>
+A client’s workload wasn’t “broken” but it felt scattered. Projects were running, meetings were happening, departments had ongoing responsibilities, but information lived in too many places. The goal was simple: build one operational system where they can see what matters in under 30 seconds.
+
+<h4>The Problem</h4>
+Before implementation:
+<ul>
+  <li>Project status visibility required manual checking</li>
+  <li>Ongoing responsibilities were mixed with temporary tasks</li>
+  <li>Meeting action items needed separate tracking</li>
+  <li>Resources existed but weren’t structured for retrieval</li>
+  <li>Completed work cluttered active workflows</li>
+</ul>
+The real cost was decision friction and constant context switching.
+
+<h4>The System I Built</h4>
+I implemented PARA in Notion and structured it in phases:
+<ul>
+  <li>Central control panel dashboard (projects, action items, recurring tasks, calendar views)</li>
+  <li>Projects database with linked tasks, statuses, and execution views</li>
+  <li>Areas by department (Ops, Finance, HR, IT, Sales, Personal, etc.)</li>
+  <li>Resource library for SOPs, templates, playbooks, vendor info, prompts</li>
+  <li>Archive process to keep active workspace clean</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Immediate overview in under 30 seconds</li>
+  <li>Reduced time spent searching and reorganizing</li>
+  <li>Estimated 1 to 2 hours saved per week for a busy team</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Executive dashboards, meeting follow-up systems, department operations hubs, SOP libraries, and any team that needs clarity and fast retrieval inside one workspace.
+`
+},
+{
+  id: "billed-reports-automation-system",
+  name: "Billed Reports Automation System",
+  category: "Reporting and dashboards",
+  problem: "Weekly billed report imports required manual validation, data cleanup, categorization, and duplicate checks before reporting could even begin.",
+  built: "Built a guided CSV ingestion workflow with strict validation, automated service categorization, duplicate prevention, file archiving, and one-click reporting views including staff summaries.",
+  tools: ["Google Sheets", "Google Apps Script", "Google Drive", "MailApp", "Custom Sidebar UI"],
+  output: "Clean billed data sheet, staff efficiency report, and structured email summary",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Billed%20Reports%20Automation%20System/Billed%20Report.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Billed%20Reports%20Automation%20System/Billed%20Report.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Billed%20Reports%20Automation%20System/AT.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Billed%20Reports%20Automation%20System/SE.png"
+  ],
+  writeup: `
+<h3>Billed Reports Automation System</h3>
+
+<h4>Quick Backstory</h4>
+Billed reports were technically working, but they quietly consumed hours every week. CSV exports needed checks, cleanup, manual categories, and duplicate spotting before management could use the data. Nothing was broken. It was just repetitive and easy to mess up.
+
+<h4>The Problem</h4>
+A typical cycle included:
+<ul>
+  <li>Validate headers and file naming</li>
+  <li>Clean practitioner names and job roles</li>
+  <li>Apply service categories (NDIS, HCP, Private, Travel, etc.)</li>
+  <li>Adjust quantities based on pricing rules</li>
+  <li>Prevent duplicates and remove excluded entries</li>
+  <li>Build staff summaries and reporting views</li>
+</ul>
+Weekly cycles can become 1.5 to 3 hours of admin work plus ongoing risk of inconsistency.
+
+<h4>The System I Built</h4>
+A guided workflow inside Google Sheets:
+<ul>
+  <li>Controlled CSV upload via sidebar with strict rules and validation</li>
+  <li>Automated import engine with cleanup, categorization, and dedupe logic</li>
+  <li>Automatic Drive filing into processed folders</li>
+  <li>One-click reporting views: staff efficiency and appointment tracking</li>
+  <li>Structured email summary for success or failure status</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Human interaction reduced to under 5 minutes per cycle</li>
+  <li>Estimated 70 to 85% reduction in manual effort</li>
+  <li>Lower duplicate-entry risk and more consistent reporting outputs</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Any workflow that starts with “We export a CSV and then clean it manually” — payroll imports, KPI updates, weekly ops reporting, reconciliations, and recurring executive summaries.
+`
+},
+{
+  id: "staff-profitability-report-automation",
+  name: "Staff Profitability Report Automation",
+  category: "Reporting and dashboards",
+  problem: "Monthly profitability reporting required manual payroll extraction, tab preparation, and revenue matching across separate sources.",
+  built: "Created a guided monthly workflow with payroll upload, automated extraction into structured tables, auto-prep of month tabs, revenue summary generation, and file organization into processed folders.",
+  tools: ["Google Sheets", "Google Drive", "Google Apps Script", "Custom Sidebar UI"],
+  output: "Monthly profitability report and revenue summary table",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Staff%20Profitability%20Report%20Automation/staffprofitablity.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Staff%20Profitability%20Report%20Automation/staffprofitablity.png"
+  ],
+  writeup: `
+<h3>Staff Profitability Report Automation</h3>
+
+<h4>Quick Backstory</h4>
+Month-end profitability reporting was getting messy. Payroll lived in a PDF, revenue lived in a separate billing export, and the reporting workbook needed a fresh tab every month. It worked, but it relied on careful copy-paste and manual checks.
+
+<h4>The Problem</h4>
+Each month involved:
+<ul>
+  <li>Finding the latest payroll file and extracting values manually</li>
+  <li>Creating the next month tab and clearing the right fields</li>
+  <li>Matching staff rows consistently across months</li>
+  <li>Pulling billed totals from another workbook</li>
+  <li>Building a monthly revenue summary</li>
+  <li>Renaming and filing processed documents</li>
+</ul>
+That often becomes 2 to 4 hours per month plus risk of mis-pastes and wrong-month updates.
+
+<h4>The System I Built</h4>
+A guided monthly flow:
+<ul>
+  <li>Payroll PDF upload via sidebar into the correct Drive folder</li>
+  <li>Automated payroll extraction into a clean structured table</li>
+  <li>One-click preparation of the next month tab from template rules</li>
+  <li>Monthly revenue summary generator (by practitioner and month)</li>
+  <li>Auto-renaming and filing into a processed folder</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Reduced from ~2 to 4 hours to ~10 to 25 minutes plus review</li>
+  <li>Estimated 80 to 90% reduction in admin time</li>
+  <li>More consistent monthly reporting structure</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Monthly dashboards, management packs, margin tracking, revenue variance reports, and recurring exports that need reliable tab structure and clean data flows.
+`
+},
+{
+  id: "business-report-dashboard",
+  name: "Business Report Dashboard",
+  category: "Reporting and dashboards",
+  problem: "Business reports existed but lacked a single executive entry point, making navigation fragmented and less usable for leadership.",
+  built: "Designed a structured HTML/CSS dashboard cover page that organizes finance, performance, and operations into a clear reporting hub with fast access to core reports.",
+  tools: ["HTML", "CSS"],
+  output: "Executive dashboard cover page linking to core reports",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/THC%20Business%20Report%20Dashboard/cover%20page-report%20dashboard.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/THC%20Business%20Report%20Dashboard/cover%20page-report%20dashboard.png"
+  ],
+  writeup: `
+<h3>Business Report Dashboard</h3>
+
+<h4>Quick Backstory</h4>
+Reports across finance, performance, and operations already existed, but there was no single entry point for leadership. People had to remember where everything lived, jump across spreadsheet tabs, and treat reporting like a scavenger hunt.
+
+<h4>The Problem</h4>
+Without a dashboard layer:
+<ul>
+  <li>Reports felt scattered and harder to find</li>
+  <li>Navigation relied on memory and spreadsheet tabs</li>
+  <li>There was no unified structure across business areas</li>
+</ul>
+
+<h4>The System I Built</h4>
+A custom HTML/CSS cover page that acts as the reporting front door:
+<ul>
+  <li>Finance section (revenue, payroll, aged debtor, scorecards)</li>
+  <li>Performance section (NPS, efficiency, profitability, staff performance)</li>
+  <li>Operations section (referrals, bookings, tracking)</li>
+</ul>
+Each tile links to the corresponding report or automated system.
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Faster navigation to key reports</li>
+  <li>Less reliance on tribal knowledge of where things live</li>
+  <li>Clearer structure for leadership and team members</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Any reporting environment where data exists but needs a clear executive “front door” for access and usability.
+`
+},
+{
+  id: "business-intelligence-dashboard-looker-studio",
+  name: "Business Intelligence Dashboard",
+  category: "Reporting and dashboards",
+  problem: "Excel-based reporting became heavy and harder to scale, with manual prep time, version control issues, and limited drill-down analysis.",
+  built: "Transitioned reporting from Excel into Looker Studio with live Google Sheets data sources, interactive filtering, fiscal year tracking, and page-based views for finance, operations, and performance.",
+  tools: ["Looker Studio", "Google Sheets"],
+  output: "Interactive live business intelligence dashboard with filters and fiscal year reporting",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Business%20Intelligence%20Dashboard/1.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Business%20Intelligence%20Dashboard/1.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Business%20Intelligence%20Dashboard/2.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Business%20Intelligence%20Dashboard/3.png"
+  ],
+  writeup: `
+<h3>Business Intelligence Dashboard</h3>
+
+<h4>Quick Backstory</h4>
+The original reporting system was built in Excel. It was fast to start, but as the clinic grew, reports became heavier, harder to maintain, and less flexible for leadership questions. Instead of layering more manual work, I rebuilt reporting in Looker Studio.
+
+<h4>The Problem</h4>
+With Excel:
+<ul>
+  <li>Reports required manual preparation and updates</li>
+  <li>Files became larger and harder to manage</li>
+  <li>Version control created risk</li>
+  <li>Drill-down analysis was limited</li>
+</ul>
+
+<h4>The System I Built</h4>
+A Looker Studio reporting environment connected to structured Google Sheets sources:
+<ul>
+  <li>Financial overview with fiscal year selection and monthly comparisons</li>
+  <li>Service breakdown by category and time period</li>
+  <li>Performance and efficiency views with filtering by therapist and role</li>
+  <li>Interactive controls for exploring the data without editing spreadsheets</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Reduced report prep from ~3 to 5 hours per month to ~15 to 20 minutes</li>
+  <li>Real-time visibility with interactive filtering</li>
+  <li>Less admin work and more time spent on decision-making</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Any growing team that has outgrown Excel reporting and needs live dashboards for financial performance, operations tracking, and team efficiency.
+`
+},
+{
+  id: "fowlabs-website-intake-email-system",
+  name: "FOWLABS Website + Intake + Email System",
+  category: "Web forms and client-facing pages",
+  problem: "Community onboarding relied on manual email tracking, scattered intake details, and inconsistent follow-ups.",
+  built: "Built a website email capture system, structured intake form, automated welcome email flow, and Google Sheets backend to centralize onboarding and inquiries.",
+  tools: ["HTML", "CSS", "JavaScript", "Google Apps Script", "Google Sheets"],
+  output: "Website intake form, automated welcome email, and centralized lead database",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/FOWLABS%20Website%2C%20Intake%20Form%2C%20and%20Automated%20Email%20System/cover%20page.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/FOWLABS%20Website%2C%20Intake%20Form%2C%20and%20Automated%20Email%20System/cover%20page.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/FOWLABS%20Website%2C%20Intake%20Form%2C%20and%20Automated%20Email%20System/in-take%20form.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/FOWLABS%20Website%2C%20Intake%20Form%2C%20and%20Automated%20Email%20System/welcome%20email.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/FOWLABS%20Website%2C%20Intake%20Form%2C%20and%20Automated%20Email%20System/contact%20form.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/FOWLABS%20Website%2C%20Intake%20Form%2C%20and%20Automated%20Email%20System/contact%20form%20email.png"
+  ],
+  writeup: `
+<h3>FOWLABS Website + Intake + Email System</h3>
+
+<h4>Quick Backstory</h4>
+FOWLABS was building a new AI learning and accountability community. Early onboarding relied on manual email replies and scattered intake information, which made follow-ups slow and pod matching difficult. They needed a system that felt professional without paying for a full CRM stack.
+
+<h4>The Problem</h4>
+The team needed a reliable way to:
+<ul>
+  <li>Capture emails automatically from the website</li>
+  <li>Send instant welcome emails with clear next steps</li>
+  <li>Collect structured intake data for pod matching</li>
+  <li>Organize inquiries in one place</li>
+  <li>Reduce missed leads and response delays</li>
+</ul>
+
+<h4>The System I Built</h4>
+A mini CRM flow built entirely inside Google Workspace:
+<ul>
+  <li>Email capture on homepage with validation and instant logging to Sheets</li>
+  <li>Automated branded HTML welcome email with clear call-to-action</li>
+  <li>Structured intake form with required fields, checkbox limits, and validation</li>
+  <li>Privacy notice modal aligned with PH Data Privacy Act principles</li>
+  <li>Floating contact modal with categorized inquiry reasons</li>
+  <li>Apps Script backend handling logging, email sending, and admin notifications</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Reduced manual logging and replies to zero</li>
+  <li>Instant welcome email after subscription</li>
+  <li>Centralized, filterable intake database for pod matching</li>
+  <li>Faster response time as sign-ups scale</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Lead capture systems, onboarding flows, community sign-ups, lightweight CRMs, membership intake systems, and automated follow-up workflows without external SaaS tools.
+`
+},
+{
+  id: "scented-mirage-order-tracking-system",
+  name: "Scented Mirage Order + Tracking System",
+  category: "Web forms and client-facing pages",
+  problem: "Manual order logging, invoice preparation, and payment tracking slowed operations and increased risk of errors.",
+  built: "Built a lightweight ecommerce-style website connected to Google Sheets backend handling product catalog, order capture, invoice emails, payment references, and customer tracking.",
+  tools: ["HTML", "CSS", "JavaScript", "Google Sheets", "Google Apps Script"],
+  output: "Customer order form, automated invoice email, payment logging, and self-serve tracking timeline",
+  thumb: "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/sm-cover%20page.png",
+  images: [
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/sm-cover%20page.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/addtobag.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/add%20item%20to%20bag.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/bag.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/filters.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/order%20confirmation.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/pymnt%20rct%20confirmation.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/thank%20you%20message.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/order%20tracker.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/order%20form%20tracker%20-%20client%20info.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/product%20catalog.png",
+    "https://raw.githubusercontent.com/jantwonine/resume/refs/heads/main/Scented%20Mirage%20Order%20%2B%20Tracking%20System/faq%26contact%20form.png"
+  ],
+  writeup: `
+<h3>Scented Mirage Order + Tracking System</h3>
+
+<h4>Quick Backstory</h4>
+The store started with only a product idea. Orders were handled manually through chat, invoices were created one by one, and payment screenshots were tracked by hand. The goal was to build a clean, low-cost system without using a full ecommerce platform.
+
+<h4>The Problem</h4>
+Manual workflows included:
+<ul>
+  <li>Copying customer details from messages into spreadsheets</li>
+  <li>Computing totals and shipping manually</li>
+  <li>Sending invoices individually</li>
+  <li>Tracking GCash references through screenshots</li>
+  <li>Replying to repeated “Where’s my order?” messages</li>
+</ul>
+This worked at low volume but became slow and error-prone as orders increased.
+
+<h4>The System I Built</h4>
+A lightweight ecommerce-style workflow using Google Workspace:
+<ul>
+  <li>Customer-facing website with catalog, filters, bag, and order form</li>
+  <li>Product catalog powered by Google Sheets (published via Apps Script JSON)</li>
+  <li>Automatic order number generation and backend logging</li>
+  <li>Admin “To Invoice” sheet with duplicate protection</li>
+  <li>One-click branded HTML invoice email with payment link</li>
+  <li>GCash reference capture updating the correct order row</li>
+  <li>Self-serve tracking timeline powered by Apps Script endpoint</li>
+</ul>
+
+<h4>Measurable Result (Estimate)</h4>
+<ul>
+  <li>Reduced 15–30 minutes per order to near-automatic logging and invoicing</li>
+  <li>Estimated 70–85% reduction in repetitive admin effort</li>
+  <li>Fewer tracking questions due to customer self-serve page</li>
+</ul>
+
+<h4>Where This Pattern Helps</h4>
+Small ecommerce shops, intake-based service businesses, booking systems, request portals, payment tracking workflows, and any lightweight client-facing system that needs automation without Shopify-level overhead.
+`
+}
+];
+
+// -------------------- PORTFOLIO UI (filters + carousel + modal) --------------------
+const filterRow = document.getElementById("filterRow");
+const projCountEl = document.getElementById("projCount");
+
+// carousel elements
+const pCarousel = document.getElementById("pCarousel");
+const pTrack = document.getElementById("pTrack");
+const pCarPrev = document.getElementById("pCarPrev");
+const pCarNext = document.getElementById("pCarNext");
+
+// modal elements
+const portfolioModal = document.getElementById("portfolioModal");
+const portfolioTitle = document.getElementById("portfolioTitle");
+const portfolioClose = document.getElementById("portfolioClose");
+
+// vertical carousel in modal
+const vCarTrack = document.getElementById("vCarTrack");
+const carouselCount = document.getElementById("carouselCount");
+
+// pdf
+const pdfPagesEl = document.getElementById("pdfPages");
+const pdfStatus = document.getElementById("pdfStatus");
+
+// helpers
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, (m) => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
+}
+function escapeAttr(str){ return escapeHtml(str); }
+
+// -------------------- FILTERS --------------------
+let activeFilter = "all";
+
+
+// Normalize categories so filters always match (case-insensitive).
+const CANON_CATEGORIES = (Array.isArray(CATEGORIES) ? CATEGORIES.map(c => c.name) : []);
+function normalizeCategory(cat){
+  const s = String(cat || "").trim();
+  if (!s) return s;
+  const hit = CANON_CATEGORIES.find(c => String(c).toLowerCase() === s.toLowerCase());
+  return hit || s;
+}
+// Ensure all projects use canonical category names
+PROJECTS.forEach(p => { p.category = normalizeCategory(p.category); });
+
+function renderFilters(){
+  if (!filterRow) return;
+
+  const buttons = [
+    { key: "all", label: "All", desc: "Everything" },
+    ...CATEGORIES.map(c => ({
+      key: c.name,
+      label: c.name
+        .replace("Compliance and Incident Workflows","Compliance")
+        .replace("Feedback Ops","Feedback")
+        .replace("Finance and Receivables Automation","Finance")
+        .replace("Internal Tools and Lightweight CRM","Internal Tools")
+        .replace("Knowledge and Workspace Systems","Knowledge")
+        .replace("Reporting and Dashboards","Dashboards")
+        .replace("Web Forms and Client-Facing Pages","Web Forms"),
+      desc: c.desc
+    }))
+  ];
+
+  filterRow.innerHTML = buttons.map(b => `
+    <button class="btn ${b.key === "all" ? "active" : ""}"
+      type="button"
+      data-filter="${escapeAttr(b.key)}"
+      title="${escapeAttr(b.desc)}">
+      ${escapeHtml(b.label)}
+    </button>
+  `).join("");
+
+  filterRow.querySelectorAll("[data-filter]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const selected = btn.getAttribute("data-filter");
+
+      activeFilter = selected;
+      buildCarousel(activeFilter);
+
+      // Remove active from all
+      filterRow.querySelectorAll(".btn").forEach(b => b.classList.remove("active"));
+
+      // Add active to clicked
+      btn.classList.add("active");
+
+      toast(selected === "all"
+        ? "Showing all projects"
+        : `Filter: ${selected}`);
+    });
+  });
+}
+
+// -------------------- PROJECT CAROUSEL (looping) --------------------
+let slides = [];
+let trackX = 0;
+let animId = null;
+let loopEnabled = true;
+
+function setCarouselControls(isLooping){
+  loopEnabled = !!isLooping;
+  // Show arrows only when looping
+  if (pCarPrev) pCarPrev.style.display = isLooping ? "flex" : "none";
+  if (pCarNext) pCarNext.style.display = isLooping ? "flex" : "none";
+
+  // In non-loop mode, remove any lingering transform drift
+  if (!isLooping && pTrack){
+    pTrack.style.transform = "translateX(0px)";
+  }
+}
+
+
+function getFilteredProjects(filterKey){
+  if (filterKey === "all") return PROJECTS;
+  const key = normalizeCategory(filterKey);
+  return PROJECTS.filter(p => normalizeCategory(p.category) === key);
+}
+
+
+function buildCarousel(filterKey){
+  const items = getFilteredProjects(filterKey);
+
+  if (projCountEl){
+    projCountEl.textContent = `${items.length} project${items.length === 1 ? "" : "s"}`;
+  }
+
+  if (!pTrack) return;
+
+  if (!items.length){
+    pTrack.classList.add("gridMode");
+    pTrack.innerHTML = `
+      <div class="pSlide" style="width:100%">
+        <div class="card reveal" style="opacity:1;transform:none">
+          <div class="cardHeader"><h3>No projects in this filter yet</h3></div>
+          <p class="muted">Add more projects to the PROJECTS array.</p>
+        </div>
+      </div>
+    `;
+    setCarouselControls(false);
+    stopLoop();
+    return;
+  }
+
+  // Auto-loop is enabled when there are 3+ cards.
+  // For 1–2 cards, keep the carousel layout but disable movement.
+  const loopMode = (items.length > 2);
+
+  // Layout + controls
+  pTrack.classList.toggle("fixedFew", !loopMode);
+  setCarouselControls(loopMode);
+
+  // Build slides
+  const html = items.map(p => slideHtml(p)).join("");
+  pTrack.innerHTML = loopMode ? (html + html) : html;
+
+  // bind open
+  pTrack.querySelectorAll(".pCard").forEach(card => {
+    const open = () => {
+      const id = card.getAttribute("data-project-id");
+      const project = PROJECTS.find(x => x.id === id);
+      if (project) openProjectModal(project);
+    };
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+    });
+  });
+
+  // reset position
+  trackX = 0;
+  pTrack.style.transform = `translateX(${trackX}px)`;
+
+  if (loopMode){
+    startLoop();
+  } else {
+    stopLoop();
+  }
+}
+
+function slideHtml(p){
+  return `
+    <div class="pSlide">
+      <div class="pCard" role="button" tabindex="0"
+           data-project-id="${escapeAttr(p.id)}"
+           aria-label="Open ${escapeAttr(p.name)}">
+        <div class="pInner">
+          <div class="pFace pFront">
+            <img class="pThumb" src="${escapeAttr(p.thumb)}" alt="${escapeAttr(p.name)} thumbnail" loading="lazy" />
+            <div class="pName">${escapeHtml(p.name)}</div>
+            <div class="pMeta">${escapeHtml(p.category)}</div>
+          </div>
+
+          <div class="pFace pBack">
+            <div class="kv">
+              <div class="k">Project</div><div class="v">${escapeHtml(p.name)}</div>
+              <div class="k">Problem</div><div class="v">${escapeHtml(p.problem)}</div>
+              <div class="k">What I built</div><div class="v">${escapeHtml(p.built)}</div>
+              <div class="k">Tools</div><div class="v">${escapeHtml(p.tools.join(", "))}</div>
+              <div class="k">Output</div><div class="v">${escapeHtml(p.output)}</div>
+            </div>
+            <div class="tags" aria-label="Tools tags">
+              ${p.tools.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+            </div>
+            <div class="muted" style="font-size:12px;margin-top:6px">Click to open</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function startLoop(){
+  stopLoop();
+  if (!loopEnabled || !pTrack || pTrack.classList.contains("gridMode")) return;
+
+
+  // speed in px per frame
+  const speed = 0.45;
+
+  function step(){
+    // width of half set (one copy)
+    const halfWidth = pTrack.scrollWidth / 2;
+
+    trackX -= speed;
+
+    // wrap
+    if (Math.abs(trackX) >= halfWidth){
+      trackX = 0;
+    }
+
+    pTrack.style.transform = `translateX(${trackX}px)`;
+    animId = requestAnimationFrame(step);
+  }
+
+  animId = requestAnimationFrame(step);
+}
+
+function stopLoop(){
+  if (animId) cancelAnimationFrame(animId);
+  animId = null;
+}
+
+// manual nudge
+pCarPrev?.addEventListener("click", () => { trackX += 240; });
+pCarNext?.addEventListener("click", () => { trackX -= 240; });
+
+// pause on hover (optional)
+pCarousel?.addEventListener("mouseenter", stopLoop);
+pCarousel?.addEventListener("mouseleave", startLoop);
+
+// -------------------- MODAL: vertical upward loop carousel --------------------
+let vAnimId = null;
+let vY = 0;
+let vLastTs = null;
+
+function setVerticalCarousel(images){
+  const imgs = Array.isArray(images) ? images.filter(Boolean) : [];
+  const countEl = document.getElementById("carouselCount");
+  if (countEl) countEl.textContent = `${imgs.length} image${imgs.length === 1 ? "" : "s"}`;
+
+  const track = document.getElementById("vCarTrack");
+  const viewport = document.getElementById("vCarViewport");
+  if (!track || !viewport) return;
+
+  track.innerHTML = "";
+  vY = 0;
+  vLastTs = null;
+
+  if (!imgs.length){
+    track.innerHTML = `<div class="muted" style="padding:12px">No images</div>`;
+    stopVerticalLoop(true);
+    return;
+  }
+
+  // Build a base list long enough so the loop feels continuous even with 1 image.
+  // We intentionally make the base taller than the viewport, then duplicate it for seamless wrap.
+  const approxItem = 430; // matches .vCarItem height
+  const approxGap  = 10;
+  const minBaseCount = Math.max(6, Math.ceil((viewport.clientHeight + 300) / (approxItem + approxGap)));
+
+  const base = [];
+  while (base.length < minBaseCount){
+    for (const src of imgs){
+      base.push(src);
+      if (base.length >= minBaseCount) break;
+    }
+  }
+
+  const list = base.concat(base);
+
+  track.innerHTML = list.map(src => `
+    <div class="vCarItem">
+      <img src="${src}" alt="" loading="lazy" />
+    </div>
+  `).join("");
+
+  // Pause on hover
+  if (!viewport.dataset.vHoverBound){
+    viewport.dataset.vHoverBound = "1";
+    viewport.addEventListener("mouseenter", () => pauseVerticalLoop());
+    viewport.addEventListener("mouseleave", () => resumeVerticalLoop());
+  }
+
+  // Start after images have a chance to affect layout
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => resumeVerticalLoop());
+  });
+}
+
+function resumeVerticalLoop(){
+  // don't reset vY; just continue
+  if (vAnimId) cancelAnimationFrame(vAnimId);
+
+  const track = document.getElementById("vCarTrack");
+  const viewport = document.getElementById("vCarViewport");
+  if (!track || !viewport) return;
+
+  // speed in px/second (more consistent than px/frame)
+  const speedPerSec = 90; // try 70–140 depending on how fast you want it
+
+  function step(ts){
+    if (vLastTs == null) vLastTs = ts;
+    const dt = Math.min(40, ts - vLastTs); // clamp to avoid huge jumps
+    vLastTs = ts;
+
+    const halfHeight = track.scrollHeight / 2;
+
+    // if not enough height to scroll, just hold position (should be rare)
+    if (halfHeight <= viewport.clientHeight + 20){
+      vY = 0;
+      track.style.transform = `translateY(0px)`;
+      vAnimId = requestAnimationFrame(step);
+      return;
+    }
+
+    vY -= speedPerSec * (dt / 1000);
+    // wrap seamlessly once we've shifted by halfHeight
+    if (-vY >= halfHeight) vY += halfHeight;
+
+    track.style.transform = `translateY(${vY}px)`;
+    vAnimId = requestAnimationFrame(step);
+  }
+
+  vAnimId = requestAnimationFrame(step);
+}
+
+function pauseVerticalLoop(){
+  if (vAnimId) cancelAnimationFrame(vAnimId);
+  vAnimId = null;
+  vLastTs = null; // so resume doesn't jump
+}
+
+// call this when you truly want to teardown (ex: modal close)
+function stopVerticalLoop(fullCleanup = false){
+  pauseVerticalLoop();
+
+  const track = document.getElementById("vCarTrack");
+  if (track) track.style.transform = `translateY(0px)`;
+
+  if (fullCleanup){
+    const viewport = document.getElementById("vCarViewport");
+    if (viewport && viewport.dataset.vcarBound){
+      viewport.removeEventListener("mouseenter", pauseVerticalLoop);
+      viewport.removeEventListener("mouseleave", resumeVerticalLoop);
+      delete viewport.dataset.vcarBound;
+    }
+  }
+}
+
+// -------------------- OPEN/CLOSE MODAL --------------------
+portfolioClose?.addEventListener("click", () => portfolioModal.close());
+portfolioModal?.addEventListener("click", (e) => {
+  const rect = portfolioModal.getBoundingClientRect();
+  const inDialog = (
+    rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+    rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+  );
+  if (!inDialog) portfolioModal.close();
+});
+
+
+portfolioModal?.addEventListener("close", () => {
+  document.documentElement.classList.remove("modalOpen");
+});
+function openProjectModal(project){
+  const titleEl = document.getElementById("portfolioTitle");
+  const writeupBody = document.getElementById("writeupBody");
+  const writeupMeta = document.getElementById("writeupMeta");
+
+  if (titleEl) titleEl.textContent = project.name;
+
+  setVerticalCarousel(project.images || []);
+
+  if (writeupBody){
+    writeupBody.innerHTML = project.writeup
+      ? project.writeup
+      : `<p class="muted">No write-up added yet.</p>`;
+  }
+
+  if (writeupMeta){
+    writeupMeta.textContent = project.category || "Overview";
+  }
+
+    // ✅ force cards back to front state
+  if (document.activeElement) document.activeElement.blur();
+  document.documentElement.classList.add("modalOpen");
+
+document.getElementById("portfolioModal")?.showModal();
+}
+
+// -------------------- INIT --------------------
+renderFilters();
+buildCarousel("all");
+
     // -------------------- CONFIG --------------------
     const CONTACT = {
       email: "jantonignsreyes@gmail.com",
@@ -1238,38 +2892,49 @@ Location: ${CONTACT.location}`;
     document.querySelectorAll(".card").forEach((c) => observer.observe(c));
 
     // -------------------- DOC MODAL --------------------
-    const docModal = document.getElementById("docModal");
-    const docTitle = document.getElementById("docTitle");
-    const docObject = document.getElementById("docObject");
-    const docDownload = document.getElementById("docDownload");
-    const docFallback = document.getElementById("docFallback");
-    const docClose = document.getElementById("docClose");
+const docModal = document.getElementById("docModal");
+const docTitle = document.getElementById("docTitle");
+const docFrame = document.getElementById("docFrame");
+const docDownload = document.getElementById("docDownload");
+const docClose = document.getElementById("docClose");
 
-    function openDoc(title, url){
-      docTitle.textContent = title;
-      docObject.setAttribute("data", url);
-      docDownload.setAttribute("href", url);
-      docFallback.setAttribute("href", url);
-      docModal.showModal();
-    }
+function openDoc(title, url){
+  docTitle.textContent = title;
 
-    document.querySelectorAll(".docBtn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const title = btn.getAttribute("data-doc-title");
-        const url = btn.getAttribute("data-doc-url");
-        openDoc(title, url);
-      });
-    });
+  // Preview (no auto-download): Google viewer
+  const viewer = "https://docs.google.com/gview?embedded=1&url=" + encodeURIComponent(url);
+  docFrame.setAttribute("src", viewer);
 
-    docClose.addEventListener("click", () => docModal.close());
-    docModal.addEventListener("click", (e) => {
-      const rect = docModal.getBoundingClientRect();
-      const inDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!inDialog) docModal.close();
-    });
+  // Download button keeps the direct file
+  docDownload.setAttribute("href", url);
+
+  docModal.showModal();
+}
+
+document.querySelectorAll(".docBtn").forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const title = btn.getAttribute("data-doc-title");
+    const url = btn.getAttribute("data-doc-url");
+    openDoc(title, url);
+  });
+});
+
+docClose.addEventListener("click", () => docModal.close());
+
+docModal.addEventListener("close", () => {
+  // cleanup so it doesn’t keep loading in background
+  docFrame.setAttribute("src", "");
+});
+
+docModal.addEventListener("click", (e) => {
+  const rect = docModal.getBoundingClientRect();
+  const inDialog = (
+    rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+    rect.left <= e.clientX && e.clientX <= rect.left + rect.width
+  );
+  if (!inDialog) docModal.close();
+});
 
     // -------------------- SEARCH ( / ) --------------------
     const searchModal = document.getElementById("searchModal");
@@ -1403,6 +3068,7 @@ Location: ${CONTACT.location}`;
       requestAnimationFrame(draw);
     }
     draw();
+
   </script>
 </body>
 </html>
